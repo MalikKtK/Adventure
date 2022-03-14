@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Adventure {
@@ -11,11 +12,15 @@ public class Adventure {
     private Room room8;
     private Room room9;
     private Room currentRoom;
+    private boolean isRunning = true;
+
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
         adventure.createRooms();
         adventure.greeting();
+        adventure.userCommand();
+
     }
 
     public Room createRooms() {
@@ -104,12 +109,39 @@ public class Adventure {
         );
         System.out.println("You are currently in a " + currentRoom.getName());
         System.out.println(currentRoom.getDescription());
+
+        System.out.println("TEST!!!");
+
     }
 
-    public void userCommand() {
+    public String userCommand() {
         Scanner input = new Scanner(System.in);
-        String userCommand = input.nextLine();
+        String userCommand = input.nextLine().toLowerCase(Locale.ROOT);
+        return userCommand;
+    }
+
+    public void navigate() {
+        while (isRunning) {
+            switch (userCommand()) {
+                case "help":
+                    System.out.println("You can navigate around in the game by typing 'North', 'South', 'West' and 'East'\n" +
+                            "depending on the direction you wish to go.\n" +
+                            "You have some commands at your disposal.\n" +
+                            "Type 'Help' to get help. \n" +
+                            "Type 'Look' to get a description of the room you are currently in. \n" +
+                            "Type 'Exit' to exit the game.");
+                    break;
+
+                case "look":
+                    System.out.println(currentRoom.getDescription());
+                    break;
+                case "exit":
+                    isRunning = false;
+                    break;
+                case "north":
 
 
+            }
+        }
     }
 }

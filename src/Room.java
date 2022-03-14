@@ -8,6 +8,8 @@ public class Room {
     private Room west;
     private Room east;
 
+
+
     Room(String name, String description) {
         setName(name);
         setDescription(description);
