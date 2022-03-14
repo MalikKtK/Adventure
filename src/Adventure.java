@@ -104,6 +104,9 @@ public class Adventure {
         );
         System.out.println("You are currently in a " + currentRoom.getName());
         System.out.println(currentRoom.getDescription());
+
+        System.out.println("TEST!!!");
+
     }
 
     public void userCommand() {
