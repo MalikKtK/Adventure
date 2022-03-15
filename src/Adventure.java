@@ -148,8 +148,7 @@ public class Adventure {
 
     public String userCommand() {
         Scanner input = new Scanner(System.in);
-        String command = input.nextLine().toLowerCase(Locale.ROOT);
-        return command;
+        return input.nextLine().toLowerCase(Locale.ROOT);
     }
 
     public void exit() {
