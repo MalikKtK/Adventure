@@ -9,12 +9,6 @@ public class Room {
     private Room east;
 
 
-
-    Room(String name, String description) {
-        setName(name);
-        setDescription(description);
-    }
-
     public void setNorth(Room north) {
         this.north = north;
     }
