@@ -134,6 +134,7 @@ public class Adventure {
     }
 
     public void navigate() {
+
         while (isRunning) {
             switch (userCommand()) {
                 case "north", "n", "go north" -> {
