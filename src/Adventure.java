@@ -108,7 +108,7 @@ public class Adventure {
 
     public void greeting() {
         currentRoom = createRooms();
-        System.out.println("Hello! Welcome to the Adventure game.\n");
+        System.out.println("Hello! Welcome to the Adventure Game.\n");
 
         System.out.println("""
                 You will start the game at a forest clearing.
@@ -132,16 +132,39 @@ public class Adventure {
         return command;
     }
 
+    public void exit() {
+        System.out.println("Thanks for playing Adventure Game!");
+        isRunning = false;
+    }
+
+    public void helpMenu() {
+        System.out.println("""
+                        You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
+                        depending on the direction you wish to go. \n
+                        You have some commands at your disposal.
+                        Type 'Help' to get help.\s
+                        Type 'Look' to get a description of the room you are currently in.\s
+                        Type 'Exit' to exit the game.""");
+    }
+
+    public void lookAround() {
+        System.out.println(currentRoom.getDescription());
+    }
+
+    public void invalidAnswer() {
+        System.out.println("Invalid answer");
+    }
+
     public void navigate() {
         while (isRunning) {
             String cantGo = "You can't go that direction.";
-            String reach = "You reach ";
+            String reachLocation = "You reach ";
             switch (userCommand()) {
                 case "north", "n", "go north", "go n" -> {
                     if (currentRoom.getNorth() != null) {
                         currentRoom = currentRoom.getNorth();
                         System.out.println("Going north");
-                        System.out.println(reach + currentRoom.getName());
+                        System.out.println(reachLocation + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
@@ -151,7 +174,7 @@ public class Adventure {
                     if (currentRoom.getSouth() != null) {
                         currentRoom = currentRoom.getSouth();
                         System.out.println("Going south");
-                        System.out.println(reach + currentRoom.getName());
+                        System.out.println(reachLocation + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
@@ -161,7 +184,7 @@ public class Adventure {
                     if (currentRoom.getEast() != null) {
                         currentRoom = currentRoom.getEast();
                         System.out.println("Going East");
-                        System.out.println(reach + currentRoom.getName());
+                        System.out.println(reachLocation + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
@@ -171,29 +194,16 @@ public class Adventure {
                     if (currentRoom.getWest() != null) {
                         currentRoom = currentRoom.getWest();
                         System.out.println("Going west");
-                        System.out.println(reach + currentRoom.getName());
+                        System.out.println(reachLocation + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
                     }
                 }
-                case "help", "h", "help me" -> System.out.println("""
-                        You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
-                        depending on the direction you wish to go. \n
-                        You have some commands at your disposal.
-                        Type 'Help' to get help.\s
-                        Type 'Look' to get a description of the room you are currently in.\s
-                        Type 'Exit' to exit the game.""");
-
-                case "look", "look around", "l" -> {
-                    System.out.println("You look around the room.\n");
-                    System.out.println(currentRoom.getDescription());
-                }
-                case "exit", "exit game", "quit", "quit game" -> {
-                    System.out.println("The program is shutting down, Thanks for playing!");
-                    isRunning = false;
-                }
-                default -> System.out.println("Invalid answer");
+                case "help", "h", "help me"                   -> helpMenu();
+                case "look", "look around", "l"               -> lookAround();
+                case "exit", "exit game", "quit", "quit game" -> exit();
+                default                                       -> invalidAnswer();
             }
         }
     }
