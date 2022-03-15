@@ -5,13 +5,11 @@ public class Adventure {
     private Room currentRoom;
     private boolean isRunning = true;
 
-
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
         adventure.createRooms();
         adventure.greeting();
         adventure.navigate();
-
     }
 
     public Room createRooms() {
@@ -108,7 +106,6 @@ public class Adventure {
         return room1;
     }
 
-
     public void greeting() {
         currentRoom = createRooms();
         System.out.println("Hello! Welcome to the Adventure game.");
@@ -192,7 +189,7 @@ public class Adventure {
                     System.out.println("The program is shutting down, Thanks for playing!");
                     isRunning = false;
                 }
-                default -> System.out.println("invalid answer");
+                default -> System.out.println("Invalid answer");
             }
         }
     }
