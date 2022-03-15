@@ -16,7 +16,7 @@ public class Adventure {
 
     public Room createRooms() {
         Room room1 = new Room("Forest clearing", "You are in a pine forest. You are standing in a clearing with trees surrounding you and light shining down into the clearing");
-        Room room2 = new Room("Swamp", "You are in a swampy marsh. Water is raching your angles and making your toes wet, eww");
+        Room room2 = new Room("Swamp", "You are in a swampy marsh. Water is reaching your angles and making your toes wet, eww");
         Room room3 = new Room("Burnt down forest", "You reached a part of the forest that has been burned down and it looks charred");
         Room room4 = new Room("Eerie lake", "You reach an eerie lake covered in mist. It looks scary");
         Room room5 = new Room("Cave", "You reach a dark and dingy cave. The walls are moist and cold");
@@ -166,7 +166,7 @@ public class Adventure {
                     System.out.println("The program is shutting down, Thanks for playing!");
                     isRunning = false;
                 }
-                default -> System.out.println("invalid answer");
+                default -> System.out.println("Invalid answer");
             }
         }
     }
