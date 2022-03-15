@@ -15,15 +15,41 @@ public class Adventure {
     }
 
     public Room createRooms() {
-        Room room1 = new Room("Forest clearing", "You are in a pine forest. You are standing in a clearing with trees surrounding you and light shining down into the clearing");
-        Room room2 = new Room("Swamp", "You are in a swampy marsh. Water is raching your angles and making your toes wet, eww");
-        Room room3 = new Room("Burnt down forest", "You reached a part of the forest that has been burned down and it looks charred");
-        Room room4 = new Room("Eerie lake", "You reach an eerie lake covered in mist. It looks scary");
-        Room room5 = new Room("Cave", "You reach a dark and dingy cave. The walls are moist and cold");
-        Room room6 = new Room("Crashed plane", "You reach the site of a crashed plane. There is blood on the plane doors, but no human remains anywhere");
-        Room room7 = new Room("Graveyard", "You reach a small graveyard. In the middle stands a mausoleum with the door pried open");
-        Room room8 = new Room("Wooded cave entrance", "You reach a wooded area with a massive cave. The cave entrance is a black hole dark as the night");
-        Room room9 = new Room("Haunted house", "You reach a small 2 story house. It looks abandoned with boarded up windows.");
+        Room room1 = new Room();
+        room1.setName("Forest clearing");
+        room1.setDescription("You are in a pine forest. You are standing in a clearing with trees surrounding you and light shining down into the clearing");
+
+        Room room2 = new Room();
+        room2.setName("Swamp");
+        room2.setDescription("You are in a swampy marsh. Water is raching your angles and making your toes wet, eww");
+
+        Room room3 = new Room();
+        room3.setName("Burnt down forest");
+        room3.setDescription("You reached a part of the forest that has been burned down and it looks charred");
+
+        Room room4 = new Room();
+        room4.setName("Eerie lake");
+        room4.setDescription("You reach an eerie lake covered in mist. It looks scary");
+
+        Room room5 = new Room();
+        room5.setName("Cave");
+        room5.setDescription("You reach a dark and dingy cave. The walls are moist and cold");
+
+        Room room6 = new Room();
+        room6.setName("Crashed plane");
+        room6.setDescription("You reach the site of a crashed plane. There is blood on the plane doors, but no human remains anywhere");
+
+        Room room7 = new Room();
+        room7.setName("Graveyard");
+        room7.setDescription("You reach a small graveyard. In the middle stands a mausoleum with the door pried open");
+
+        Room room8 = new Room();
+        room8.setName("Wooded cave entrance");
+        room8.setDescription("You reach a wooded area with a massive cave. The cave entrance is a black hole dark as the night");
+
+        Room room9 = new Room();
+        room9.setName("Haunted house");
+        room9.setDescription("You reach a small 2 story house. It looks abandoned with boarded up windows.");
 
         //Room 1
         room1.setNorth(null);
