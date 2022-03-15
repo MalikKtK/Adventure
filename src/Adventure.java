@@ -2,15 +2,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Adventure {
-    private Room room1;
-    private Room room2;
-    private Room room3;
-    private Room room4;
-    private Room room5;
-    private Room room6;
-    private Room room7;
-    private Room room8;
-    private Room room9;
     private Room currentRoom;
     private boolean isRunning = true;
 
@@ -20,19 +11,20 @@ public class Adventure {
         adventure.createRooms();
         adventure.greeting();
         adventure.userCommand();
+        adventure.navigate();
 
     }
 
     public Room createRooms() {
-        room1 = new Room("Forest clearing", "You are in a pine forest. You are standing in a clearing with trees surrounding you and light shining down into the clearing");
-        room2 = new Room("Swamp", "You are in a swampy marsh. Water is raching your angles and making your toes wet, eww");
-        room3 = new Room("Burnt down forest", "You reached a part of the forest that has been burned down and it looks charred");
-        room4 = new Room("Eerie lake", "You reach an eerie lake covered in mist. It looks scary");
-        room5 = new Room("Cave", "You reach a dark and dingy cave. The walls are moist and cold");
-        room6 = new Room("Crashed plane", "You reach the site of a crashed plane. There is blood on the plane doors, but no human remains anywhere");
-        room7 = new Room("Graveyard", "You reach a small graveyard. In the middle stands a mausoleum with the door pried open");
-        room8 = new Room("Wooded cave entrance", "You reach a wooded area with a massive cave. The cave entrance is a black hole dark as the night");
-        room9 = new Room("Haunted house", "You reach a small 2 story house. It looks abandoned with boarded up windows.");
+        Room room1 = new Room("Forest clearing", "You are in a pine forest. You are standing in a clearing with trees surrounding you and light shining down into the clearing");
+        Room room2 = new Room("Swamp", "You are in a swampy marsh. Water is raching your angles and making your toes wet, eww");
+        Room room3 = new Room("Burnt down forest", "You reached a part of the forest that has been burned down and it looks charred");
+        Room room4 = new Room("Eerie lake", "You reach an eerie lake covered in mist. It looks scary");
+        Room room5 = new Room("Cave", "You reach a dark and dingy cave. The walls are moist and cold");
+        Room room6 = new Room("Crashed plane", "You reach the site of a crashed plane. There is blood on the plane doors, but no human remains anywhere");
+        Room room7 = new Room("Graveyard", "You reach a small graveyard. In the middle stands a mausoleum with the door pried open");
+        Room room8 = new Room("Wooded cave entrance", "You reach a wooded area with a massive cave. The cave entrance is a black hole dark as the night");
+        Room room9 = new Room("Haunted house", "You reach a small 2 story house. It looks abandoned with boarded up windows.");
 
         //Room 1
         room1.setNorth(null);
@@ -91,21 +83,19 @@ public class Adventure {
         return room1;
     }
 
-//     todo help commendo
-//     todo exit commando
-//     todo look commando
-//     todo bevægelses metode
 
     public void greeting() {
         currentRoom = createRooms();
         System.out.println("Hello! Welcome to the Adventure game.");
-        System.out.println("You will start the game at a certain location. \n" +
-                "From this point you can navigate around in the game by typing 'North', 'South', 'West' and 'East' \n" +
-                "depending on the direction you wish to go.");
-        System.out.println("You have some commands at your disposal. \n" +
-                "Type 'Help' to get help. \n" +
-                "Type 'Look' to get a description of the room you are currently in. \n" +
-                "Type 'Exit' to exit the game."
+        System.out.println("""
+                You will start the game at a certain location.\s
+                From this point you can navigate around in the game by typing 'North', 'South', 'West' and 'East'\s
+                depending on the direction you wish to go.""");
+        System.out.println("""
+                You have some commands at your disposal.\s
+                Type 'Help' to get help.\s
+                Type 'Look' to get a description of the room you are currently in.\s
+                Type 'Exit' to exit the game."""
         );
         System.out.println("You are currently in a " + currentRoom.getName());
         System.out.println(currentRoom.getDescription());
@@ -114,31 +104,63 @@ public class Adventure {
 
     public String userCommand() {
         Scanner input = new Scanner(System.in);
-        String userCommand = input.nextLine().toLowerCase(Locale.ROOT);
-        return userCommand;
+        return input.nextLine().toLowerCase(Locale.ROOT);
     }
 
     public void navigate() {
         while (isRunning) {
             switch (userCommand()) {
-                case "help":
-                    System.out.println("You can navigate around in the game by typing 'North', 'South', 'West' and 'East'\n" +
-                            "depending on the direction you wish to go.\n" +
-                            "You have some commands at your disposal.\n" +
-                            "Type 'Help' to get help. \n" +
-                            "Type 'Look' to get a description of the room you are currently in. \n" +
-                            "Type 'Exit' to exit the game.");
-                    break;
-
-                case "look":
+                case "north" -> {
+                    if (currentRoom.getNorth() != null) {
+                        currentRoom = currentRoom.getNorth();
+                        System.out.println("Going north");
+                        System.out.println("You are standing in: " + currentRoom.getName());
+                    } else {
+                        System.out.println("You can't go that direction");
+                    }
+                }
+                case "south" -> {
+                    if (currentRoom.getSouth() != null) {
+                        currentRoom = currentRoom.getSouth();
+                        System.out.println("Going south");
+                        System.out.println("You are standing in: " + currentRoom.getName());
+                    } else {
+                        System.out.println("You can't go that direction");
+                    }
+                }
+                case "east" -> {
+                    if (currentRoom.getEast() != null) {
+                        currentRoom = currentRoom.getEast();
+                        System.out.println("Going East");
+                        System.out.println("You are standing in: " + currentRoom.getName());
+                    } else {
+                        System.out.println("You can't go that direction");
+                    }
+                }
+                case "west" -> {
+                    if (currentRoom.getWest() != null) {
+                        currentRoom = currentRoom.getWest();
+                        System.out.println("Going west");
+                        System.out.println("You are standing in: " + currentRoom.getName());
+                    } else {
+                        System.out.println("You can't go that direction");
+                    }
+                }
+                case "help" -> System.out.println("""
+                        You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
+                        depending on the direction you wish to go.
+                        You have some commands at your disposal.
+                        Type 'Help' to get help.\s
+                        Type 'Look' to get a description of the room you are currently in.\s
+                        Type 'Exit' to exit the game.""");
+                case "look" -> {
+                    System.out.println("The player looks around the room.\n");
                     System.out.println(currentRoom.getDescription());
-                    break;
-                case "exit":
+                }
+                case "exit" -> {
+                    System.out.println("The program is shutting down, Thanks for playing!");
                     isRunning = false;
-                    break;
-                case "north":
-
-
+                }
             }
         }
     }
