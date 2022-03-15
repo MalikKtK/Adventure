@@ -108,21 +108,18 @@ public class Adventure {
 
     public void greeting() {
         currentRoom = createRooms();
-        System.out.println("Hello! Welcome to the Adventure game.");
-        System.out.println();
+        System.out.println("Hello! Welcome to the Adventure game.\n");
         System.out.println("""
-                You will start the game at a certain location.\s
-                From this point you can navigate around in the game by typing 'North', 'South', 'West' and 'East'\s
-                depending on the direction you wish to go.\s""");
-        System.out.println();
+                You will start the game at a certain location.
+                From this point you can navigate around in the game by typing:
+                'North', 'South', 'West' and 'East' depending on the direction you wish to go.""");
         System.out.println("""
-                You have some commands at your disposal:
+                \nYou have some commands at your disposal:
                 Type 'Help' to get help.\s
                 Type 'Look' to get a description of the room you are currently in.\s
                 Type 'Exit' to exit the game."""
         );
-        System.out.println();
-        System.out.println("You are currently in a " + currentRoom.getName());
+        System.out.println("\nYou are currently in a " + currentRoom.getName());
         System.out.println(currentRoom.getDescription());
 
     }
@@ -136,45 +133,46 @@ public class Adventure {
     public void navigate() {
 
         while (isRunning) {
+            String cantGo = "You can't go that direction";
             switch (userCommand()) {
-                case "north", "n", "go north" -> {
+                case "north", "n", "go north", "go n" -> {
                     if (currentRoom.getNorth() != null) {
                         currentRoom = currentRoom.getNorth();
                         System.out.println("Going north");
                         System.out.println("You are standing in: " + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
-                        System.out.println("You can't go that direction");
+                        System.out.println(cantGo);
                     }
                 }
-                case "south", "s", "go south" -> {
+                case "south", "s", "go south", "go s" -> {
                     if (currentRoom.getSouth() != null) {
                         currentRoom = currentRoom.getSouth();
                         System.out.println("Going south");
                         System.out.println("You are standing in: " + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
-                        System.out.println("You can't go that direction");
+                        System.out.println(cantGo);
                     }
                 }
-                case "east", "e", "go east" -> {
+                case "east", "e", "go east", "go e" -> {
                     if (currentRoom.getEast() != null) {
                         currentRoom = currentRoom.getEast();
                         System.out.println("Going East");
                         System.out.println("You are standing in: " + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
-                        System.out.println("You can't go that direction");
+                        System.out.println(cantGo);
                     }
                 }
-                case "west", "w", "go west" -> {
+                case "west", "w", "go west", "go w" -> {
                     if (currentRoom.getWest() != null) {
                         currentRoom = currentRoom.getWest();
                         System.out.println("Going west");
                         System.out.println("You are standing in: " + currentRoom.getName());
                         System.out.println(currentRoom.getDescription());
                     } else {
-                        System.out.println("You can't go that direction");
+                        System.out.println(cantGo);
                     }
                 }
                 case "help" -> System.out.println("""
@@ -186,7 +184,7 @@ public class Adventure {
                         Type 'Exit' to exit the game.""");
 
                 case "look" -> {
-                    System.out.println("You looks around the room.\n");
+                    System.out.println("You look around the room.\n");
                     System.out.println(currentRoom.getDescription());
                 }
                 case "exit" -> {
