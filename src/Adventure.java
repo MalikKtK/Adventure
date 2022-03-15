@@ -15,7 +15,7 @@ public class Adventure {
     public Room createRooms() {
         Room room1 = new Room();
         room1.setName("a forest clearing.");
-        room1.setDescription("There are trees surrounding you all around and light shining down into the clearing.");
+        room1.setDescription("There are trees surrounding you and light shining down into the clearing.");
 
         Room room2 = new Room();
         room2.setName("a swamp.");
