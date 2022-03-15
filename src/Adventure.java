@@ -10,7 +10,6 @@ public class Adventure {
         Adventure adventure = new Adventure();
         adventure.createRooms();
         adventure.greeting();
-        adventure.userCommand();
         adventure.navigate();
 
     }
@@ -104,7 +103,8 @@ public class Adventure {
 
     public String userCommand() {
         Scanner input = new Scanner(System.in);
-        return input.nextLine().toLowerCase(Locale.ROOT);
+        String command = input.nextLine().toLowerCase(Locale.ROOT);
+        return command;
     }
 
     public void navigate() {
