@@ -152,7 +152,7 @@ public class Adventure {
     }
 
     public void invalidAnswer() {
-        System.out.println("Invalid answer");
+        System.out.println("Invalid answer. Try again or type 'help' to get a list of commands.");
     }
 
     public void navigate() {
