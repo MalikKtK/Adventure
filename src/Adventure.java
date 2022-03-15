@@ -19,7 +19,7 @@ public class Adventure {
 
         Room room2 = new Room();
         room2.setName("Swamp");
-        room2.setDescription("You are in a swampy marsh. Water is raching your angles and making your toes wet, eww");
+        room2.setDescription("You are in a swampy marsh. Water is reaching your angles and making your toes wet, eww");
 
         Room room3 = new Room();
         room3.setName("Burnt down forest");
@@ -109,16 +109,19 @@ public class Adventure {
     public void greeting() {
         currentRoom = createRooms();
         System.out.println("Hello! Welcome to the Adventure game.");
+        System.out.println();
         System.out.println("""
                 You will start the game at a certain location.\s
                 From this point you can navigate around in the game by typing 'North', 'South', 'West' and 'East'\s
-                depending on the direction you wish to go.""");
+                depending on the direction you wish to go.\s""");
+        System.out.println();
         System.out.println("""
-                You have some commands at your disposal.\s
+                You have some commands at your disposal:
                 Type 'Help' to get help.\s
                 Type 'Look' to get a description of the room you are currently in.\s
                 Type 'Exit' to exit the game."""
         );
+        System.out.println();
         System.out.println("You are currently in a " + currentRoom.getName());
         System.out.println(currentRoom.getDescription());
 
