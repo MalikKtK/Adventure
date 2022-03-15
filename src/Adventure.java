@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Adventure {
     private Room currentRoom;
     private boolean isRunning = true;
+    final String cantGo = "You can't go that direction.";
+    final String reachLocation = "You reach ";
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
@@ -14,60 +16,87 @@ public class Adventure {
 
     public Room createRooms() {
         Room room1 = new Room();
-        room1.setName("a forest clearing.");
-        room1.setDescription("There are trees surrounding you and light shining down into the clearing.");
+        room1.setName("The Forest Clearing.");
+        room1.setDescription("""
+                There are trees surrounding you and light shining down into the clearing.
+                Small birds are chirping from the trees, occasionally flying around between the branches of nearby trees.
+                The trees are Pine trees, and a strong smell of pine resin fills your nostrils.""");
+        room1.setShortDescription("""
+                You have been in this forest clearing before. Birds are chirping and it smells like pine.""");
+        room1.setHasBeenVisited(true);
 
         Room room2 = new Room();
-        room2.setName("a swamp.");
+        room2.setName("The Swamp.");
         room2.setDescription("""
                 Water is reaching your angles and making your toes wet.
                 There are strange sounds coming from all around you.""");
+        room2.setShortDescription("""
+                It is still wet, and not the nicest place to be.""");
 
         Room room3 = new Room();
-        room3.setName("a burned down forest.");
+        room3.setName("The Burned Down Forest.");
         room3.setDescription("""
                 Most of the surrounding trees has burned down,
                 leaving only charred stumpy remains. There is a general lack of life,
                 and a smell of charred flesh fills the air.""");
+        room3.setShortDescription("""
+                Everything is still burned to a crisp.""");
 
         Room room4 = new Room();
-        room4.setName("an eerie lake.");
+        room4.setName("The Eerie Lake.");
         room4.setDescription("""
                 The lake covered in a thick mist.
                 It looks unsettling, and through the mist two green eyes stares back at you.""");
+        room4.setShortDescription("""
+                The lake is still covered in mist but the green eyes are nowhere to be seen.""");
 
         Room room5 = new Room();
-        room5.setName("a cave.");
+        room5.setName("The Dark Cave.");
         room5.setDescription("""
                 Inside the cave it is pitch black.
                 The walls are moist and cold, and so is the air.
                 Critters can be heard skittering around the darkness,
                 but a faint beam of light shines down from a crack in the top of the cave,
                 to reveal a faint glinting in dark distance.""");
+        room5.setShortDescription("""
+                The cave is still pitch black. You can still see a faint light and
+                hear the sound of critters in the background.""");
 
 
         Room room6 = new Room();
-        room6.setName("a crash site.");
+        room6.setName("The Crash Site.");
         room6.setDescription("""
-                Around you are the remains of a crashed plane.
-                There is blood on the plane doors, but no human remains anywhere.""");
+                Around you are the remains of a crashed plane. The fuselage is still intact
+                but the wings have been ripped off in the crash.
+                There is blood on the plane doors, but no human remains anywhere.
+                The plane engine is smoking.""");
+        room6.setShortDescription("""
+                The planes engine has stopped smoking.""");
 
         Room room7 = new Room();
-        room7.setName("a graveyard.");
+        room7.setName("The Graveyard.");
         room7.setDescription("""
                 The graveyard is small, and looks long abandoned.
                 Small cracked tombstones are spread around the yard,
                 and in the middle stands a mausoleum with the door pried open.""");
+        room7.setShortDescription("""
+                The mausoleums door has been shut...""");
 
         Room room8 = new Room();
-        room8.setName("a wooded cave entrance.");
+        room8.setName("The Wooded Cave Entrance.");
         room8.setDescription("""
                 The entrance to the cave is surrounded by thick brush and trees.
                 It's a large dark hole, that is just big enough to squeeze through.""");
+        room8.setShortDescription("""
+                It hasn't changed much.""");
 
         Room room9 = new Room();
-        room9.setName("a haunted house.");
-        room9.setDescription("It looks abandoned with boarded up windows and cobwebs all over.");
+        room9.setName("The Haunted House.");
+        room9.setDescription("""
+                It looks abandoned with boarded up windows and cobwebs all over.""");
+        room9.setShortDescription("""
+                It is still very much abandoned.""");
+
 
         //Room 1
         room1.setNorth(null);
@@ -128,7 +157,10 @@ public class Adventure {
 
     public void greeting() {
         currentRoom = createRooms();
-        System.out.println("Hello! Welcome to the Adventure Game.\n");
+        System.out.println("""
+                Hello! Welcome to the:
+                ADVENTURE GAME
+                """);
 
         System.out.println("""
                 You will start the game at a forest clearing.
@@ -139,10 +171,9 @@ public class Adventure {
                 \nYou have some commands at your disposal:
                 Type 'Help' to get help.\s
                 Type 'Look' to get a description of the room you are currently in.\s
-                Type 'Exit' to exit the game."""
-        );
+                Type 'Exit' to exit the game.""");
         System.out.println("\nYou are currently in " + currentRoom.getName());
-        System.out.println(currentRoom.getDescription());
+        System.out.println("\n" + currentRoom.getDescription());
 
     }
 
@@ -174,30 +205,60 @@ public class Adventure {
         System.out.println("Invalid answer. Try again or type 'help' to get a list of commands.");
     }
 
+    public void goNorth() {
+        if (!currentRoom.getNorth().isBeenVisited()) {
+            if (currentRoom.getNorth() != null) {
+                currentRoom = currentRoom.getNorth();
+                System.out.println("Going north \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getDescription());
+                currentRoom.setHasBeenVisited(true);
+            } else {
+                System.out.println(cantGo);
+            }
+        } else if (currentRoom.getNorth().isBeenVisited()) {
+            if (currentRoom.getNorth() != null) {
+                currentRoom = currentRoom.getNorth();
+                System.out.println("Going north \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getShortDescription());
+            } else {
+                System.out.println(cantGo);
+            }
+        }
+    }
+
+    public void goSouth() {
+        if (!currentRoom.getSouth().isBeenVisited()) {
+            if (currentRoom.getSouth() != null) {
+                currentRoom = currentRoom.getSouth();
+                System.out.println("Going south \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getDescription());
+                currentRoom.setHasBeenVisited(true);
+            } else {
+                System.out.println(cantGo);
+            }
+        } else if (currentRoom.getSouth().isBeenVisited()) {
+            if (currentRoom.getSouth() != null) {
+                currentRoom = currentRoom.getSouth();
+                System.out.println("Going South \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getShortDescription());
+            } else {
+                System.out.println(cantGo);
+            }
+        }
+    }
+
     public void navigate() {
         while (isRunning) {
-            String cantGo = "You can't go that direction.";
-            String reachLocation = "You reach ";
             switch (userCommand()) {
                 case "north", "n", "go north", "go n" -> {
-                    if (currentRoom.getNorth() != null) {
-                        currentRoom = currentRoom.getNorth();
-                        System.out.println("Going north \n");
-                        System.out.println(reachLocation + currentRoom.getName() + "\n");
-                        System.out.println(currentRoom.getDescription());
-                    } else {
-                        System.out.println(cantGo);
-                    }
+                    goNorth();
                 }
                 case "south", "s", "go south", "go s" -> {
-                    if (currentRoom.getSouth() != null) {
-                        currentRoom = currentRoom.getSouth();
-                        System.out.println("Going south \n");
-                        System.out.println(reachLocation + currentRoom.getName() + "\n");
-                        System.out.println(currentRoom.getDescription());
-                    } else {
-                        System.out.println(cantGo);
-                    }
+                    goSouth();
                 }
                 case "east", "e", "go east", "go e" -> {
                     if (currentRoom.getEast() != null) {

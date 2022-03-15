@@ -3,11 +3,12 @@ import java.util.Scanner;
 public class Room {
     private String name;
     private String description;
+    private boolean BeenVisited = false;
+    private String shortDescription;
     private Room north;
     private Room south;
     private Room west;
     private Room east;
-
 
     public void setNorth(Room north) {
         this.north = north;
@@ -55,6 +56,22 @@ public class Room {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isBeenVisited() {
+        return BeenVisited;
+    }
+
+    public void setHasBeenVisited(boolean BeenVisited) {
+        this.BeenVisited = BeenVisited;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
     }
 }
 
