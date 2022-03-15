@@ -110,38 +110,42 @@ public class Adventure {
     public void navigate() {
         while (isRunning) {
             switch (userCommand()) {
-                case "north" -> {
+                case "north", "n", "go north" -> {
                     if (currentRoom.getNorth() != null) {
                         currentRoom = currentRoom.getNorth();
                         System.out.println("Going north");
                         System.out.println("You are standing in: " + currentRoom.getName());
+                        System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println("You can't go that direction");
                     }
                 }
-                case "south" -> {
+                case "south", "s", "go south" -> {
                     if (currentRoom.getSouth() != null) {
                         currentRoom = currentRoom.getSouth();
                         System.out.println("Going south");
                         System.out.println("You are standing in: " + currentRoom.getName());
+                        System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println("You can't go that direction");
                     }
                 }
-                case "east" -> {
+                case "east", "e", "go east" -> {
                     if (currentRoom.getEast() != null) {
                         currentRoom = currentRoom.getEast();
                         System.out.println("Going East");
                         System.out.println("You are standing in: " + currentRoom.getName());
+                        System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println("You can't go that direction");
                     }
                 }
-                case "west" -> {
+                case "west", "w", "go west" -> {
                     if (currentRoom.getWest() != null) {
                         currentRoom = currentRoom.getWest();
                         System.out.println("Going west");
                         System.out.println("You are standing in: " + currentRoom.getName());
+                        System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println("You can't go that direction");
                     }
@@ -153,14 +157,16 @@ public class Adventure {
                         Type 'Help' to get help.\s
                         Type 'Look' to get a description of the room you are currently in.\s
                         Type 'Exit' to exit the game.""");
+
                 case "look" -> {
-                    System.out.println("The player looks around the room.\n");
+                    System.out.println("You looks around the room.\n");
                     System.out.println(currentRoom.getDescription());
                 }
                 case "exit" -> {
                     System.out.println("The program is shutting down, Thanks for playing!");
                     isRunning = false;
                 }
+                default -> System.out.println("invalid answer");
             }
         }
     }
