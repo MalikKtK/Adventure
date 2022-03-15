@@ -19,31 +19,51 @@ public class Adventure {
 
         Room room2 = new Room();
         room2.setName("a swamp.");
-        room2.setDescription("Water is reaching your angles and making your toes wet. There are strange sounds coming from all around you.");
+        room2.setDescription("""
+                Water is reaching your angles and making your toes wet.
+                There are strange sounds coming from all around you.""");
 
         Room room3 = new Room();
         room3.setName("a burned down forest.");
-        room3.setDescription("Most of the surrounding trees has burned down, leaving only charred stumpy remains. There is a general lack of life, and a smell of charred flesh fills the air.");
+        room3.setDescription("""
+                Most of the surrounding trees has burned down,
+                leaving only charred stumpy remains. There is a general lack of life,
+                and a smell of charred flesh fills the air.""");
 
         Room room4 = new Room();
         room4.setName("an eerie lake.");
-        room4.setDescription("The lake covered in a thick mist. It looks unsettling, and through the mist two green eyes stares back at you.");
+        room4.setDescription("""
+                The lake covered in a thick mist.
+                It looks unsettling, and through the mist two green eyes stares back at you.""");
 
         Room room5 = new Room();
         room5.setName("a cave.");
-        room5.setDescription("Inside the cave it is pitch black. The walls are moist and cold, and so is the air. Critters can be heard skittering around the darkness, but a faint beam of light shines down from a crack in the top of the cave, to reveal a faint glinting in dark distance.");
+        room5.setDescription("""
+                Inside the cave it is pitch black.
+                The walls are moist and cold, and so is the air.
+                Critters can be heard skittering around the darkness,
+                but a faint beam of light shines down from a crack in the top of the cave,
+                to reveal a faint glinting in dark distance.""");
+
 
         Room room6 = new Room();
         room6.setName("a crash site.");
-        room6.setDescription("Around you are the remains of a crashed plane. There is blood on the plane doors, but no human remains anywhere.");
+        room6.setDescription("""
+                Around you are the remains of a crashed plane.
+                There is blood on the plane doors, but no human remains anywhere.""");
 
         Room room7 = new Room();
         room7.setName("a graveyard.");
-        room7.setDescription("The graveyard is small, and looks long abandoned. Small cracked tombstones are spread around the yard, and in the middle stands a mausoleum with the door pried open.");
+        room7.setDescription("""
+                The graveyard is small, and looks long abandoned.
+                Small cracked tombstones are spread around the yard,
+                and in the middle stands a mausoleum with the door pried open.""");
 
         Room room8 = new Room();
         room8.setName("a wooded cave entrance.");
-        room8.setDescription("The entrance to the cave is surrounded by thick brush and trees. It's a large dark hole, that is just big enough to squeeze through. ");
+        room8.setDescription("""
+                The entrance to the cave is surrounded by thick brush and trees.
+                It's a large dark hole, that is just big enough to squeeze through.""");
 
         Room room9 = new Room();
         room9.setName("a haunted house.");
@@ -139,12 +159,12 @@ public class Adventure {
 
     public void helpMenu() {
         System.out.println("""
-                        You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
-                        depending on the direction you wish to go. \n
-                        You have some commands at your disposal.
-                        Type 'Help' to get help.\s
-                        Type 'Look' to get a description of the room you are currently in.\s
-                        Type 'Exit' to exit the game.""");
+                You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
+                depending on the direction you wish to go. \n
+                You have some commands at your disposal.
+                Type 'Help' to get help.\s
+                Type 'Look' to get a description of the room you are currently in.\s
+                Type 'Exit' to exit the game.""");
     }
 
     public void lookAround() {
@@ -163,8 +183,8 @@ public class Adventure {
                 case "north", "n", "go north", "go n" -> {
                     if (currentRoom.getNorth() != null) {
                         currentRoom = currentRoom.getNorth();
-                        System.out.println("Going north");
-                        System.out.println(reachLocation + currentRoom.getName());
+                        System.out.println("Going north \n");
+                        System.out.println(reachLocation + currentRoom.getName() + "\n");
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
@@ -173,8 +193,8 @@ public class Adventure {
                 case "south", "s", "go south", "go s" -> {
                     if (currentRoom.getSouth() != null) {
                         currentRoom = currentRoom.getSouth();
-                        System.out.println("Going south");
-                        System.out.println(reachLocation + currentRoom.getName());
+                        System.out.println("Going south \n");
+                        System.out.println(reachLocation + currentRoom.getName() + "\n");
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
@@ -183,8 +203,8 @@ public class Adventure {
                 case "east", "e", "go east", "go e" -> {
                     if (currentRoom.getEast() != null) {
                         currentRoom = currentRoom.getEast();
-                        System.out.println("Going East");
-                        System.out.println(reachLocation + currentRoom.getName());
+                        System.out.println("Going East \n");
+                        System.out.println(reachLocation + currentRoom.getName() + "\n");
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
@@ -193,17 +213,17 @@ public class Adventure {
                 case "west", "w", "go west", "go w" -> {
                     if (currentRoom.getWest() != null) {
                         currentRoom = currentRoom.getWest();
-                        System.out.println("Going west");
-                        System.out.println(reachLocation + currentRoom.getName());
+                        System.out.println("Going west \n");
+                        System.out.println(reachLocation + currentRoom.getName() + "\n");
                         System.out.println(currentRoom.getDescription());
                     } else {
                         System.out.println(cantGo);
                     }
                 }
-                case "help", "h", "help me"                   -> helpMenu();
-                case "look", "look around", "l"               -> lookAround();
+                case "help", "h", "help me" -> helpMenu();
+                case "look", "look around", "l" -> lookAround();
                 case "exit", "exit game", "quit", "quit game" -> exit();
-                default                                       -> invalidAnswer();
+                default -> invalidAnswer();
             }
         }
     }
