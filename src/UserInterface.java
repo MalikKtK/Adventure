@@ -46,4 +46,17 @@ public class UserInterface {
         System.out.println("Invalid answer. Try again or type 'help' to get a list of commands.");
     }
 
+    public void exitMessage() {
+        System.out.println("""
+                Thanks for playing
+                              _                 _                     _____                     \s
+                     /\\      | |               | |                   / ____|                    \s
+                    /  \\   __| |_   _____ _ __ | |_ _   _ _ __ ___  | |  __  __ _ _ __ ___   ___\s
+                   / /\\ \\ / _` \\ \\ / / _ \\ '_ \\| __| | | | '__/ _ \\ | | |_ |/ _` | '_ ` _ \\ / _ \\
+                  / ____ \\ (_| |\\ V /  __/ | | | |_| |_| | | |  __/ | |__| | (_| | | | | | |  __/
+                 /_/    \\_\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___|  \\_____|\\__,_|_| |_| |_|\\___|
+                                                                                                \s
+                    """);
+    }
+
 }

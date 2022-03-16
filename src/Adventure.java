@@ -15,7 +15,7 @@ public class Adventure {
     }
 
     public void exit() {
-        System.out.println("Thanks for playing Adventure Game!");
+        ui.exitMessage();
         isRunning = false;
     }
 
