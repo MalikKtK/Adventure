@@ -21,7 +21,7 @@ public class Adventure {
                 Small birds are chirping from the trees, occasionally flying around between the branches of nearby trees.
                 The trees are Pine trees, and a strong smell of pine resin fills your nostrils.""");
         room1.setShortDescription("""
-                You have  in this forest clearing before. Birds are chirping and it smells like pine.""");
+                You have been in this forest clearing before. Birds are chirping and it smells like pine.""");
         room1.setVisited(true);
 
         Room room2 = new Room();
@@ -211,15 +211,15 @@ public class Adventure {
     }
 
     public void goNorth() {
-        if (!currentRoom.getNorth().isVisited()) {
+        if (currentRoom.getNorth() == null) {
+            System.out.println(cantGo);
+        } else if (!currentRoom.getNorth().isVisited()) {
             if (currentRoom.getNorth() != null) {
                 currentRoom = currentRoom.getNorth();
                 System.out.println("Going north \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
                 currentRoom.setVisited(true);
-            } else {
-                System.out.println(cantGo);
             }
         } else if (currentRoom.getNorth().isVisited()) {
             if (currentRoom.getNorth() != null) {
@@ -234,20 +234,20 @@ public class Adventure {
     }
 
     public void goSouth() {
-        if (!currentRoom.getSouth().isVisited()) {
+        if (currentRoom.getSouth() == null) {
+            System.out.println(cantGo);
+        } else if (!currentRoom.getSouth().isVisited()) {
             if (currentRoom.getSouth() != null) {
                 currentRoom = currentRoom.getSouth();
                 System.out.println("Going south \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
                 currentRoom.setVisited(true);
-            } else {
-                System.out.println(cantGo);
             }
         } else if (currentRoom.getSouth().isVisited()) {
             if (currentRoom.getSouth() != null) {
                 currentRoom = currentRoom.getSouth();
-                System.out.println("Going South \n");
+                System.out.println("Going south \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getShortDescription());
             } else {
@@ -257,20 +257,20 @@ public class Adventure {
     }
 
     public void goEast() {
-        if (!currentRoom.getEast().isVisited())
+        if (currentRoom.getEast() == null) {
+            System.out.println(cantGo);
+        } else if (!currentRoom.getEast().isVisited()) {
             if (currentRoom.getEast() != null) {
                 currentRoom = currentRoom.getEast();
-                System.out.println("Going East \n");
+                System.out.println("Going east \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
                 currentRoom.setVisited(true);
-            } else {
-                System.out.println(cantGo);
             }
-        else if (currentRoom.getEast().isVisited()) {
+        } else if (currentRoom.getEast().isVisited()) {
             if (currentRoom.getEast() != null) {
                 currentRoom = currentRoom.getEast();
-                System.out.println("Going East \n");
+                System.out.println("Going east \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getShortDescription());
             } else {
@@ -280,14 +280,15 @@ public class Adventure {
     }
 
     public void goWest() {
-        if (!currentRoom.getWest().isVisited()) {
+        if (currentRoom.getWest() == null) {
+            System.out.println(cantGo);
+        } else if (!currentRoom.getWest().isVisited()) {
             if (currentRoom.getWest() != null) {
                 currentRoom = currentRoom.getWest();
                 System.out.println("Going west \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
-            } else {
-                System.out.println(cantGo);
+                currentRoom.setVisited(true);
             }
         } else if (currentRoom.getWest().isVisited()) {
             if (currentRoom.getWest() != null) {
