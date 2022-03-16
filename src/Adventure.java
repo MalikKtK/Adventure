@@ -9,9 +9,14 @@ public class Adventure {
 
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
-        adventure.createRooms();
-        adventure.greeting();
-        adventure.navigate();
+        adventure.go();
+
+    }
+
+    public void go() {
+        createRooms();
+        greeting();
+        navigate();
     }
 
     public Room createRooms() {
