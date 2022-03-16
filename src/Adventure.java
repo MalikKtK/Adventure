@@ -80,7 +80,7 @@ public class Adventure {
                 Small cracked tombstones are spread around the yard,
                 and in the middle stands a mausoleum with the door pried open.""");
         room7.setShortDescription("""
-                The mausoleums door has  shut...""");
+                The mausoleums door has shut...""");
 
         Room room8 = new Room();
         room8.setName("The Wooded Cave Entrance.");
@@ -96,7 +96,6 @@ public class Adventure {
                 It looks abandoned with boarded up windows and cobwebs all over.""");
         room9.setShortDescription("""
                 It is still very much abandoned.""");
-
 
         //Room 1
         room1.setNorth(null);
@@ -166,7 +165,6 @@ public class Adventure {
                    / /\\ \\ / _` \\ \\ / / _ \\ '_ \\| __| | | | '__/ _ \\ | | |_ |/ _` | '_ ` _ \\ / _ \\
                   / ____ \\ (_| |\\ V /  __/ | | | |_| |_| | | |  __/ | |__| | (_| | | | | | |  __/
                  /_/    \\_\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___|  \\_____|\\__,_|_| |_| |_|\\___|
-                                                                                                \s
                                                                                                 \s
                 """);
 
