@@ -22,8 +22,8 @@ public class Adventure {
                 Small birds are chirping from the trees, occasionally flying around between the branches of nearby trees.
                 The trees are Pine trees, and a strong smell of pine resin fills your nostrils.""");
         room1.setShortDescription("""
-                You have been in this forest clearing before. Birds are chirping and it smells like pine.""");
-        room1.setHasBeenVisited(true);
+                You have  in this forest clearing before. Birds are chirping and it smells like pine.""");
+        room1.setVisited(true);
 
         Room room2 = new Room();
         room2.setName("The Swamp.");
@@ -67,7 +67,7 @@ public class Adventure {
         room6.setName("The Crash Site.");
         room6.setDescription("""
                 Around you are the remains of a crashed plane. The fuselage is still intact
-                but the wings have been ripped off in the crash.
+                but the wings have  ripped off in the crash.
                 There is blood on the plane doors, but no human remains anywhere.
                 The plane engine is smoking.""");
         room6.setShortDescription("""
@@ -80,7 +80,7 @@ public class Adventure {
                 Small cracked tombstones are spread around the yard,
                 and in the middle stands a mausoleum with the door pried open.""");
         room7.setShortDescription("""
-                The mausoleums door has been shut...""");
+                The mausoleums door has  shut...""");
 
         Room room8 = new Room();
         room8.setName("The Wooded Cave Entrance.");
@@ -158,8 +158,16 @@ public class Adventure {
     public void greeting() {
         currentRoom = createRooms();
         System.out.println("""
-                Hello! Welcome to the:
-                ADVENTURE GAME
+                Hello!
+                Welcome to the:
+                              _                 _                     _____                     \s
+                     /\\      | |               | |                   / ____|                    \s
+                    /  \\   __| |_   _____ _ __ | |_ _   _ _ __ ___  | |  __  __ _ _ __ ___   ___\s
+                   / /\\ \\ / _` \\ \\ / / _ \\ '_ \\| __| | | | '__/ _ \\ | | |_ |/ _` | '_ ` _ \\ / _ \\
+                  / ____ \\ (_| |\\ V /  __/ | | | |_| |_| | | |  __/ | |__| | (_| | | | | | |  __/
+                 /_/    \\_\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___|  \\_____|\\__,_|_| |_| |_|\\___|
+                                                                                                \s
+                                                                                                \s
                 """);
 
         System.out.println("""
@@ -206,17 +214,17 @@ public class Adventure {
     }
 
     public void goNorth() {
-        if (!currentRoom.getNorth().isBeenVisited()) {
+        if (!currentRoom.getNorth().isVisited()) {
             if (currentRoom.getNorth() != null) {
                 currentRoom = currentRoom.getNorth();
                 System.out.println("Going north \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
-                currentRoom.setHasBeenVisited(true);
+                currentRoom.setVisited(true);
             } else {
                 System.out.println(cantGo);
             }
-        } else if (currentRoom.getNorth().isBeenVisited()) {
+        } else if (currentRoom.getNorth().isVisited()) {
             if (currentRoom.getNorth() != null) {
                 currentRoom = currentRoom.getNorth();
                 System.out.println("Going north \n");
@@ -229,17 +237,17 @@ public class Adventure {
     }
 
     public void goSouth() {
-        if (!currentRoom.getSouth().isBeenVisited()) {
+        if (!currentRoom.getSouth().isVisited()) {
             if (currentRoom.getSouth() != null) {
                 currentRoom = currentRoom.getSouth();
                 System.out.println("Going south \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
-                currentRoom.setHasBeenVisited(true);
+                currentRoom.setVisited(true);
             } else {
                 System.out.println(cantGo);
             }
-        } else if (currentRoom.getSouth().isBeenVisited()) {
+        } else if (currentRoom.getSouth().isVisited()) {
             if (currentRoom.getSouth() != null) {
                 currentRoom = currentRoom.getSouth();
                 System.out.println("Going South \n");
@@ -251,38 +259,68 @@ public class Adventure {
         }
     }
 
+    public void goEast() {
+        if (!currentRoom.getEast().isVisited())
+            if (currentRoom.getEast() != null) {
+                currentRoom = currentRoom.getEast();
+                System.out.println("Going East \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getDescription());
+                currentRoom.setVisited(true);
+            } else {
+                System.out.println(cantGo);
+            }
+        else if (currentRoom.getEast().isVisited()) {
+            if (currentRoom.getEast() != null) {
+                currentRoom = currentRoom.getEast();
+                System.out.println("Going East \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getShortDescription());
+            } else {
+                System.out.println(cantGo);
+            }
+        }
+    }
+
+    public void goWest() {
+        if (!currentRoom.getWest().isVisited()) {
+            if (currentRoom.getWest() != null) {
+                currentRoom = currentRoom.getWest();
+                System.out.println("Going west \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getDescription());
+            } else {
+                System.out.println(cantGo);
+            }
+        } else if (currentRoom.getWest().isVisited()) {
+            if (currentRoom.getWest() != null) {
+                currentRoom = currentRoom.getWest();
+                System.out.println("Going west \n");
+                System.out.println(reachLocation + currentRoom.getName() + "\n");
+                System.out.println(currentRoom.getShortDescription());
+            } else {
+                System.out.println(cantGo);
+            }
+        }
+    }
+
     public void navigate() {
         while (isRunning) {
             switch (userCommand()) {
-                case "north", "n", "go north", "go n" -> {
-                    goNorth();
-                }
-                case "south", "s", "go south", "go s" -> {
-                    goSouth();
-                }
-                case "east", "e", "go east", "go e" -> {
-                    if (currentRoom.getEast() != null) {
-                        currentRoom = currentRoom.getEast();
-                        System.out.println("Going East \n");
-                        System.out.println(reachLocation + currentRoom.getName() + "\n");
-                        System.out.println(currentRoom.getDescription());
-                    } else {
-                        System.out.println(cantGo);
-                    }
-                }
-                case "west", "w", "go west", "go w" -> {
-                    if (currentRoom.getWest() != null) {
-                        currentRoom = currentRoom.getWest();
-                        System.out.println("Going west \n");
-                        System.out.println(reachLocation + currentRoom.getName() + "\n");
-                        System.out.println(currentRoom.getDescription());
-                    } else {
-                        System.out.println(cantGo);
-                    }
-                }
+                case "north", "n", "go north", "go n" -> goNorth();
+
+                case "south", "s", "go south", "go s" -> goSouth();
+
+                case "east", "e", "go east", "go e" -> goEast();
+
+                case "west", "w", "go west", "go w" -> goWest();
+
                 case "help", "h", "help me" -> helpMenu();
+
                 case "look", "look around", "l" -> lookAround();
+
                 case "exit", "exit game", "quit", "quit game" -> exit();
+
                 default -> invalidAnswer();
             }
         }
