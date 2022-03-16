@@ -28,6 +28,16 @@ public class UserInterface {
 
     }
 
+    public void helpMenu() {
+        System.out.println("""
+                You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
+                depending on the direction you wish to go. \n
+                You have some commands at your disposal.
+                Type 'Help' to get help.\s
+                Type 'Look' to get a description of the room you are currently in.\s
+                Type 'Exit' to exit the game.""");
+    }
+
     public void lookAround(Room currentRoom) {
         System.out.println(currentRoom.getDescription());
     }
@@ -35,4 +45,5 @@ public class UserInterface {
     public void invalidAnswer() {
         System.out.println("Invalid answer. Try again or type 'help' to get a list of commands.");
     }
+
 }

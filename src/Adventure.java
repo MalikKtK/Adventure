@@ -1,6 +1,3 @@
-import java.util.Locale;
-import java.util.Scanner;
-
 public class Adventure {
 
     private boolean isRunning = true;
@@ -8,17 +5,13 @@ public class Adventure {
     UserInterface ui = new UserInterface();
     Player player = new Player();
 
-    public void go() {
+    public void run() {
         map.createRooms();
         Room currentRoom = map.getStartRoom();
         ui.greeting(currentRoom);
         player.setCurrentRoom(currentRoom);
-        navigate();
-    }
-
-    public String userCommand() {
-        Scanner input = new Scanner(System.in);
-        return input.nextLine().toLowerCase(Locale.ROOT);
+        while (isRunning)
+            userAction();
     }
 
     public void exit() {
@@ -26,36 +19,24 @@ public class Adventure {
         isRunning = false;
     }
 
-    public void helpMenu() {
-        System.out.println("""
-                You can navigate around in the game by typing 'North', 'South', 'West' and 'East'
-                depending on the direction you wish to go. \n
-                You have some commands at your disposal.
-                Type 'Help' to get help.\s
-                Type 'Look' to get a description of the room you are currently in.\s
-                Type 'Exit' to exit the game.""");
-    }
+    public void userAction() {
+        switch (player.userCommand()) {
+            case "north", "n", "go north", "go n" -> player.goNorth();
 
-    public void navigate() {
-        while (isRunning) {
+            case "south", "s", "go south", "go s" -> player.goSouth();
 
-            switch (userCommand()) {
-                case "north", "n", "go north", "go n" -> player.goNorth();
+            case "east", "e", "go east", "go e" -> player.goEast();
 
-                case "south", "s", "go south", "go s" -> player.goSouth();
+            case "west", "w", "go west", "go w" -> player.goWest();
 
-                case "east", "e", "go east", "go e" -> player.goEast();
+            case "help", "h", "help me" -> ui.helpMenu();
 
-                case "west", "w", "go west", "go w" -> player.goWest();
+            case "look", "look around", "l" -> ui.lookAround(player.getCurrentRoom());
 
-                case "help", "h", "help me" -> helpMenu();
+            case "exit", "exit game", "quit", "quit game" -> exit();
 
-                case "look", "look around", "l" -> ui.lookAround(player.getCurrentRoom());
-
-                case "exit", "exit game", "quit", "quit game" -> exit();
-
-                default -> ui.invalidAnswer();
-            }
+            default -> ui.invalidAnswer();
         }
     }
 }
+

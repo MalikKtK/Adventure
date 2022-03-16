@@ -1,4 +1,5 @@
 public class Map {
+
     Room startRoom = createRooms();
 
     public Room getStartRoom() {
