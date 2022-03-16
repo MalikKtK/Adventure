@@ -7,12 +7,6 @@ public class Adventure {
     final String cantGo = "You can't go that direction.";
     final String reachLocation = "You reach ";
 
-    public static void main(String[] args) {
-        Adventure adventure = new Adventure();
-        adventure.go();
-
-    }
-
     public void go() {
         createRooms();
         greeting();
