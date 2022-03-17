@@ -19,6 +19,11 @@ public class Player {
         return input.nextLine().toLowerCase(Locale.ROOT);
     }
 
+    // TODO: 17-03-2022 LAV SAMLET MOVE METODE MED RETNING SOME INDPUT.
+    // De fire metoder goNorth, goSouth etc. minder dog så meget om hinanden.
+    // Så mon ikke I kunne overveje at fjerne de redundante kodelinjer ved at have én move-metode i Player klassen,
+    // der tager retning som parameter? Og så i en if-sætning tjekker på retning ....
+    
     public void goNorth() {
         if (currentRoom.getNorth() == null) {
             System.out.println(cantGo);
