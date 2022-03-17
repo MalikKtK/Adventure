@@ -1,8 +1,9 @@
+import java.sql.SQLOutput;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Player {
-
+    Scanner input = new Scanner(System.in);
     private Room currentRoom;
     final String cantGo = "You can't go that direction.";
     final String reachLocation = "You reach ";
@@ -16,7 +17,6 @@ public class Player {
     }
 
     public String userCommand() {
-        Scanner input = new Scanner(System.in);
         return input.nextLine().toLowerCase(Locale.ROOT);
     }
 

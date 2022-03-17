@@ -1,4 +1,8 @@
+import java.util.Locale;
+import java.util.Scanner;
+
 public class UserInterface {
+    Scanner input = new Scanner(System.in);
 
     public void greeting(Room currentRoom) {
         System.out.println("""
@@ -12,7 +16,8 @@ public class UserInterface {
                  /_/    \\_\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___|  \\_____|\\__,_|_| |_| |_|\\___|
                                                                                                 \s
                 """);
-
+        System.out.println("Please enter the name of your Adventurer!");
+        playerName();
         System.out.println("""
                 You will start the game at a forest clearing.
                 From this point you can navigate around in the game by typing:
@@ -23,9 +28,13 @@ public class UserInterface {
                 Type 'Help' to get help.\s
                 Type 'Look' to get a description of the room you are currently in.\s
                 Type 'Exit' to exit the game.""");
-        System.out.println("\nYou are currently in " + currentRoom.getName());
+        System.out.println("\nYou wake up in " + currentRoom.getName());
         System.out.println("\n" + currentRoom.getDescription());
 
+    }
+
+    public String playerName() {
+        return input.nextLine().toLowerCase(Locale.ROOT);
     }
 
     public void helpMenu() {
