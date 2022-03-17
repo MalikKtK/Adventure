@@ -1,4 +1,3 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -38,7 +37,6 @@ public class UserInterface {
         System.out.println("\n" + currentRoom.getDescription());
 
     }
-
     public void playerName() {
         playerName = input.nextLine();
         playerNameCapitalized = playerName.substring(0, 1).toUpperCase() + playerName.substring(1).toLowerCase();
