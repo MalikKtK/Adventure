@@ -20,6 +20,7 @@ public class Adventure {
     }
 
     public void userAction() {
+        System.out.println("\nWhat do you want to do?");
         switch (player.userCommand()) {
             case "north", "n", "go north", "go n" -> player.goNorth();
 

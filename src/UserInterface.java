@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner input = new Scanner(System.in);
+    String playerName;
+    String playerNameCapitalized;
 
     public void greeting(Room currentRoom) {
         System.out.println("""
@@ -18,23 +20,29 @@ public class UserInterface {
                 """);
         System.out.println("Please enter the name of your Adventurer!");
         playerName();
+        System.out.println("Great job " + playerName + "!");
+
         System.out.println("""
-                You will start the game at a forest clearing.
+                \nYou will start the game at a forest clearing.
                 From this point you can navigate around in the game by typing:
                 'go North', 'go South', 'go West' and 'go East' depending on the direction you wish to go.""");
 
         System.out.println("""
-                \nYou have some commands at your disposal:
+                \nYou have some additional commands at your disposal:
                 Type 'Help' to get help.\s
                 Type 'Look' to get a description of the room you are currently in.\s
                 Type 'Exit' to exit the game.""");
+        System.out.println("""
+                \nNow lets play... ADVENTURE GAME""");
         System.out.println("\nYou wake up in " + currentRoom.getName());
         System.out.println("\n" + currentRoom.getDescription());
 
     }
 
     public String playerName() {
-        return input.nextLine().toLowerCase(Locale.ROOT);
+        playerName = input.nextLine();
+        playerNameCapitalized = playerName.substring(0,1).toUpperCase() + playerName.substring(1).toLowerCase();
+        return playerNameCapitalized;
     }
 
     public void helpMenu() {
