@@ -8,6 +8,15 @@ public class Map {
 
     public Room createRooms() {
         Room room1 = new Room();
+
+        Item axe = new Item("Axe", "A big old lumberjack axe");
+        Item pouch = new Item("Pouch", "An old small leather pouch");
+        Item matches = new Item("Matches", "A box of matches");
+
+        room1.addItem(axe);
+        room1.addItem(pouch);
+        room1.addItem(matches);
+
         room1.setName("The Forest Clearing.");
         room1.setDescription("""
                 There are trees surrounding you and light shining down into the clearing.
@@ -16,6 +25,7 @@ public class Map {
         room1.setShortDescription("""
                 You have been in this forest clearing before. Birds are chirping and it smells like pine.""");
         room1.setVisited(true);
+
 
         Room room2 = new Room();
         room2.setName("The Swamp.");

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -35,8 +36,11 @@ public class UserInterface {
                 \nNow lets play... ADVENTURE GAME""");
         System.out.println("\nYou wake up in " + currentRoom.getName());
         System.out.println("\n" + currentRoom.getDescription());
+        System.out.println("\nThere is also a number of items around you:");
+        System.out.println("\n" + currentRoom.getItems());
 
     }
+
     public void playerName() {
         playerName = input.nextLine();
         playerNameCapitalized = playerName.substring(0, 1).toUpperCase() + playerName.substring(1).toLowerCase();

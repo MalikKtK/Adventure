@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class Player {
     private Room currentRoom;
     final String cantGo = "You can't go that direction.";
     final String reachLocation = "You reach ";
+    private ArrayList<Item> inventory = new ArrayList<>();
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -33,6 +35,7 @@ public class Player {
                 System.out.println("Going north \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
+                listItems(currentRoom);
                 currentRoom.setVisited(true);
             }
         } else if (currentRoom.getNorth() != null) {
@@ -40,6 +43,7 @@ public class Player {
             System.out.println("Going north \n");
             System.out.println(reachLocation + currentRoom.getName() + "\n");
             System.out.println(currentRoom.getShortDescription());
+            listItems(currentRoom);
         } else {
             System.out.println(cantGo);
         }
@@ -55,6 +59,7 @@ public class Player {
                 System.out.println("Going south \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
+                listItems(currentRoom);
                 currentRoom.setVisited(true);
             }
         } else if (currentRoom.getSouth() != null) {
@@ -62,6 +67,7 @@ public class Player {
             System.out.println("Going south \n");
             System.out.println(reachLocation + currentRoom.getName() + "\n");
             System.out.println(currentRoom.getShortDescription());
+            listItems(currentRoom);
         } else {
             System.out.println(cantGo);
         }
@@ -77,6 +83,7 @@ public class Player {
                 System.out.println("Going east \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
+                listItems(currentRoom);
                 currentRoom.setVisited(true);
             }
         } else if (currentRoom.getEast() != null) {
@@ -84,6 +91,7 @@ public class Player {
             System.out.println("Going east \n");
             System.out.println(reachLocation + currentRoom.getName() + "\n");
             System.out.println(currentRoom.getShortDescription());
+            listItems(currentRoom);
         } else {
             System.out.println(cantGo);
         }
@@ -99,6 +107,7 @@ public class Player {
                 System.out.println("Going west \n");
                 System.out.println(reachLocation + currentRoom.getName() + "\n");
                 System.out.println(currentRoom.getDescription());
+                listItems(currentRoom);
                 currentRoom.setVisited(true);
             }
         } else if (currentRoom.getWest() != null) {
@@ -106,9 +115,14 @@ public class Player {
             System.out.println("Going west \n");
             System.out.println(reachLocation + currentRoom.getName() + "\n");
             System.out.println(currentRoom.getShortDescription());
+            listItems(currentRoom);
         } else {
             System.out.println(cantGo);
         }
+    }
+    public void listItems(Room currentRoom) {
+        System.out.println("\nThere is also a number of items around you:");
+        System.out.println("\n" + currentRoom.getItems());
     }
 }
 
