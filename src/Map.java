@@ -1,3 +1,5 @@
+import java.util.concurrent.locks.AbstractOwnableSynchronizer;
+
 public class Map {
 
     Room startRoom = createRooms();
@@ -8,11 +10,9 @@ public class Map {
 
     public Room createRooms() {
         Room room1 = new Room();
-
         Item axe = new Item("Axe", "A big old lumberjack axe");
         Item pouch = new Item("Pouch", "An old small leather pouch");
         Item matches = new Item("Matches", "A box of matches");
-
         room1.addItem(axe);
         room1.addItem(pouch);
         room1.addItem(matches);
@@ -26,8 +26,10 @@ public class Map {
                 You have been in this forest clearing before. Birds are chirping and it smells like pine.""");
         room1.setVisited(true);
 
-
         Room room2 = new Room();
+        Item potato = new Item("Potato", "A delicious potato");
+        room2.addItem(potato);
+
         room2.setName("The Swamp.");
         room2.setDescription("""
                 Water is reaching your angles and making your toes wet.
@@ -36,6 +38,11 @@ public class Map {
                 It is still wet, and not the nicest place to be.""");
 
         Room room3 = new Room();
+        Item bow = new Item("Bow", "A beautifully crafted wooden bow");
+        Item arrows = new Item("Arrows", "A bundle of arrows");
+        room3.addItem(bow);
+        room3.addItem(arrows);
+
         room3.setName("The Burned Down Forest.");
         room3.setDescription("""
                 Most of the surrounding trees has burned down,
@@ -53,6 +60,9 @@ public class Map {
                 The lake is still covered in mist but the green eyes are nowhere to be seen.""");
 
         Room room5 = new Room();
+        Item lamp = new Item("Lamp", "A shiny old brass lamp");
+        room5.addItem(lamp);
+
         room5.setName("The Dark Cave.");
         room5.setDescription("""
                 Inside the cave it is pitch black.
@@ -64,8 +74,10 @@ public class Map {
                 The cave is still pitch black. You can still see a faint light and
                 hear the sound of critters in the background.""");
 
-
         Room room6 = new Room();
+        Item skull = new Item("Skull", "A human skull. It has a large crack at the base");
+        room6.addItem(skull);
+
         room6.setName("The Crash Site.");
         room6.setDescription("""
                 Around you are the remains of a crashed plane. The fuselage is still intact
@@ -76,6 +88,9 @@ public class Map {
                 The planes engine has stopped smoking.""");
 
         Room room7 = new Room();
+        Item treasureChest = new Item("Treasure Chest", "A giant wooden treasure chest filled with shimmering golden coins");
+        room7.addItem(treasureChest);
+
         room7.setName("The Graveyard.");
         room7.setDescription("""
                 The graveyard is small, and looks long abandoned.
@@ -85,6 +100,9 @@ public class Map {
                 The mausoleums door has shut...""");
 
         Room room8 = new Room();
+        Item torch = new Item("Torch", "A torch with a wooden handle dripping with wax");
+        room8.addItem(torch);
+
         room8.setName("The Wooded Cave Entrance.");
         room8.setDescription("""
                 The entrance to the cave is surrounded by thick brush and trees.
@@ -93,6 +111,9 @@ public class Map {
                 It hasn't changed much.""");
 
         Room room9 = new Room();
+        Item sword = new Item("Sword", "An old viking sword. Still in remarkably good condition");
+        room9.addItem(sword);
+
         room9.setName("The Haunted House.");
         room9.setDescription("""
                 It looks abandoned with boarded up windows and cobwebs all over.""");
