@@ -7,7 +7,7 @@ public class Player {
     private Room currentRoom;
     final String cantGo = "You can't go that direction.";
     final String reachLocation = "You reach ";
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private final ArrayList<Item> inventory = new ArrayList<>();
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -25,7 +25,7 @@ public class Player {
     // De fire metoder goNorth, goSouth etc. minder dog så meget om hinanden.
     // Så mon ikke I kunne overveje at fjerne de redundante kodelinjer ved at have én move-metode i Player klassen,
     // der tager retning som parameter? Og så i en if-sætning tjekker på retning ....
-    
+
     public void goNorth() {
         if (currentRoom.getNorth() == null) {
             System.out.println(cantGo);
@@ -123,6 +123,19 @@ public class Player {
     public void listItems(Room currentRoom) {
         System.out.println("\nThere is also a number of items around you:");
         System.out.println("\n" + currentRoom.getItems());
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+    public void takeItem(Item item) {
+        getCurrentRoom().removeItem(item);
+        inventory.add(item);
+    }
+
+    public void dropItem(Item item) {
+        inventory.remove(item);
+        getCurrentRoom().addItem(item);
     }
 }
 

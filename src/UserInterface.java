@@ -64,6 +64,33 @@ public class UserInterface {
         System.out.println("Invalid answer. Try again or type 'help' to get a list of commands.");
     }
 
+    public void printInventory(Player player) {
+        if (player.getInventory().isEmpty())
+            System.out.println("- Inventory is empty");
+        else
+            System.out.printf("- Inventory %s\n", player.getInventory());
+    }
+    public void printItemNotSpecified() {
+        System.out.println("You need to specifiy which Item you want!");
+    }
+
+    public void printItemNotInRoom(String itemName) {
+        System.out.printf("Sorry but there isn´t %s in the room;(\n", itemName);
+    }
+
+    public void printAddInventory() {
+        System.out.println("Added item to inventory");
+    }
+
+    public void printRemoveInventory() {
+        System.out.println("Removed item from inventory");
+    }
+
+    public void printInvalidUserInput() {
+        System.out.println("invalid user input");
+    }
+
+
     public void exitMessage() {
         System.out.println("""
                 Thanks for playing

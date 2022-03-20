@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Adventure {
 
     private boolean isRunning = true;
-    Map map = new Map();
-    UserInterface ui = new UserInterface();
-    Player player = new Player();
+    private final Map map = new Map();
+    private final UserInterface ui = new UserInterface();
+    private final Player player = new Player();
+    private final ArrayList<Item> items = new ArrayList<>();
+
 
     public void run() {
         map.createRooms();
@@ -30,14 +34,57 @@ public class Adventure {
 
             case "west", "w", "go west", "go w" -> player.goWest();
 
+            case "t", "take" -> takeItem(player, String.valueOf(items));
+
+            case "d", "drop" -> dropItem(player, String.valueOf(items));
+
             case "help", "h", "help me" -> ui.helpMenu();
 
             case "look", "look around", "l" -> ui.lookAround(player.getCurrentRoom());
 
             case "exit", "exit game", "quit", "quit game" -> exit();
 
+
+            case "i", "inventory" -> ui.printInventory(player);
+
             default -> ui.invalidAnswer();
         }
     }
+    public void takeItem(Player player, String itemName) {
+        Room currentRoom = player.getCurrentRoom();
+
+        if (itemName == null) {
+            ui.printItemNotSpecified();
+            return;
+        }
+
+        for (Item item : currentRoom.getItems()) {
+            if (item.getName().equalsIgnoreCase(itemName) || item.getDescription().equalsIgnoreCase(itemName)) {
+                player.takeItem(item);
+                ui.printAddInventory();
+                return;
+            }
+        }
+
+        ui.printItemNotInRoom(itemName);
+    }
+
+    public void dropItem(Player player, String itemName) {
+        if (itemName == null) {
+            ui.printItemNotSpecified();
+            return;
+        }
+
+        for (Item item : player.getInventory()) {
+            if (item.getName().equalsIgnoreCase(itemName) || item.getDescription().equalsIgnoreCase(itemName)) {
+                player.dropItem(item);
+                ui.printRemoveInventory();
+                return;
+            }
+        }
+
+        ui.printItemNotInRoom(itemName);
+    }
+
 }
 

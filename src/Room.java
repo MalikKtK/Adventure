@@ -9,7 +9,7 @@ public class Room {
     private Room south;
     private Room west;
     private Room east;
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
     public void setNorth(Room north) {
         this.north = north;
@@ -82,14 +82,11 @@ public class Room {
     public ArrayList<Item> getItems() {
         return items;
     }
-
-    public String printArray(ArrayList items) {
-        String stringArray = "";
-        for (int i = 0; i < items.size(); i++) {
-            stringArray = stringArray + items.get(i) + "\n";
-        }
-        return stringArray;
+    public void removeItem(Item item) {
+        items.remove(item);
     }
+
+
 
 
 }
