@@ -14,15 +14,19 @@ public class Adventure {
         while (isRunning)
             userAction();
     }
-
     public void exit() {
         ui.exitMessage();
         isRunning = false;
     }
 
     public void userAction() {
+        String[] inputElements = ui.userCommand();
+        String command = inputElements[0];
+        String item = inputElements[1];
+
+
         System.out.println("\nWhat do you want to do?");
-        switch (player.userCommand()) {
+        switch (command) {
             case "north", "n", "go north", "go n" -> player.goNorth();
 
             case "south", "s", "go south", "go s" -> player.goSouth();
@@ -31,9 +35,9 @@ public class Adventure {
 
             case "west", "w", "go west", "go w" -> player.goWest();
 
-            case "t", "take" -> takeItem(player, item);
+            case "t", "take" -> player.takeItem(player, item);
 
-            case "d", "drop" -> dropItem(player, item);
+            case "d", "drop" -> player.dropItem(player, item);
 
             case "help", "h", "help me" -> ui.helpMenu();
 
@@ -46,41 +50,6 @@ public class Adventure {
 
             default -> ui.invalidAnswer();
         }
-    }
-    public void takeItem(Player player, String itemName) {
-        Room currentRoom = player.getCurrentRoom();
-
-        if (itemName == null) {
-            ui.printItemNotSpecified();
-            return;
-        }
-
-        for (Item item : currentRoom.getItems()) {
-            if (item.getName().equalsIgnoreCase(itemName) || item.getDescription().equalsIgnoreCase(itemName)) {
-                player.takeItem(item);
-                ui.printAddInventory();
-                return;
-            }
-        }
-
-        ui.printItemNotInRoom(itemName);
-    }
-
-    public void dropItem(Player player, String itemName) {
-        if (itemName == null) {
-            ui.printItemNotSpecified();
-            return;
-        }
-
-        for (Item item : player.getInventory()) {
-            if (item.getName().equalsIgnoreCase(itemName) || item.getDescription().equalsIgnoreCase(itemName)) {
-                player.dropItem(item);
-                ui.printRemoveInventory();
-                return;
-            }
-        }
-
-        ui.printItemNotInRoom(itemName);
     }
 }
 

@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -43,6 +44,17 @@ public class UserInterface {
     public void playerName() {
         playerName = input.nextLine();
         playerNameCapitalized = playerName.substring(0, 1).toUpperCase() + playerName.substring(1).toLowerCase();
+    }
+
+    public String[] userCommand() {
+        String userInput = input.nextLine().toLowerCase(Locale.ROOT);
+        String[] userInputElements = userInput.split(" ", 2);
+
+        if (userInputElements.length == 1) {
+            return new String[] {userInputElements[0], null};
+        }
+
+        return userInputElements;
     }
 
     public void helpMenu() {

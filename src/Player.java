@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Player {
@@ -22,9 +21,7 @@ public class Player {
         return currentRoom;
     }
 
-    public String userCommand() {
-        return input.nextLine().toLowerCase(Locale.ROOT);
-    }
+
 
     // TODO: 17-03-2022 LAV SAMLET MOVE METODE MED RETNING SOME INDPUT.
     // De fire metoder goNorth, goSouth etc. minder dog så meget om hinanden.
@@ -134,13 +131,46 @@ public class Player {
     public ArrayList<Item> getInventory() {
         return inventory;
     }
+    public void takeItem(Player player, String itemName) {
+        Room currentRoom = player.getCurrentRoom();
 
-    public void takeItem(Item item) {
+        if (itemName == null) {
+            System.out.println("Sorry but there isn´t an item named" + itemName + " in the room");
+            return;
+        }
+
+        for (Item item : currentRoom.getItems()) {
+            if (item.getName().equalsIgnoreCase(itemName) || item.getDescription().equalsIgnoreCase(itemName)) {
+                player.takeItemInv(item);
+                System.out.println("Added item to inventory");
+                return;
+            }
+        }
+
+        System.out.println("Sorry but there isn´t an item named" + itemName + " in the room");
+    }
+
+    public void dropItem(Player player, String itemName) {
+        if (itemName == null) {
+            System.out.println("You need to specify which Item you want!");
+            return;
+        }
+        for (Item item : player.getInventory()) {
+            if (item.getName().equalsIgnoreCase(itemName) || item.getDescription().equalsIgnoreCase(itemName)) {
+                player.dropItemInv(item);
+                System.out.println("Removed item from inventory");
+                return;
+            }
+        }
+
+        System.out.println(" ");
+    }
+    public void takeItemInv(Item item) {
         currentRoom.removeItem(item);
         inventory.add(item);
     }
 
-    public void dropItem(Item item) {
+    public void dropItemInv(Item item) {
         inventory.remove(item);
         getCurrentRoom().addItem(item);
     }
