@@ -1,5 +1,3 @@
-import java.util.concurrent.locks.AbstractOwnableSynchronizer;
-
 public class Map {
 
     Room startRoom = createRooms();

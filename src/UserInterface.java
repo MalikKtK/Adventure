@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -86,9 +85,6 @@ public class UserInterface {
         System.out.println("Removed item from inventory");
     }
 
-    public void printInvalidUserInput() {
-        System.out.println("invalid user input");
-    }
 
 
     public void exitMessage() {

@@ -29,7 +29,7 @@ public class Player {
     public void goNorth() {
         if (currentRoom.getNorth() == null) {
             System.out.println(cantGo);
-        } else if (!currentRoom.getNorth().isVisited()) {
+        } else if (currentRoom.getNorth().isVisited()) {
             if (currentRoom.getNorth() != null) {
                 currentRoom = currentRoom.getNorth();
                 System.out.println("Going north \n");
@@ -53,7 +53,7 @@ public class Player {
     public void goSouth() {
         if (currentRoom.getSouth() == null) {
             System.out.println(cantGo);
-        } else if (!currentRoom.getSouth().isVisited()) {
+        } else if (currentRoom.getSouth().isVisited()) {
             if (currentRoom.getSouth() != null) {
                 currentRoom = currentRoom.getSouth();
                 System.out.println("Going south \n");
@@ -77,7 +77,7 @@ public class Player {
     public void goEast() {
         if (currentRoom.getEast() == null) {
             System.out.println(cantGo);
-        } else if (!currentRoom.getEast().isVisited()) {
+        } else if (currentRoom.getEast().isVisited()) {
             if (currentRoom.getEast() != null) {
                 currentRoom = currentRoom.getEast();
                 System.out.println("Going east \n");
@@ -101,7 +101,7 @@ public class Player {
     public void goWest() {
         if (currentRoom.getWest() == null) {
             System.out.println(cantGo);
-        } else if (!currentRoom.getWest().isVisited()) {
+        } else if (currentRoom.getWest().isVisited()) {
             if (currentRoom.getWest() != null) {
                 currentRoom = currentRoom.getWest();
                 System.out.println("Going west \n");

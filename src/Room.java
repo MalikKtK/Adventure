@@ -60,7 +60,7 @@ public class Room {
     }
 
     public boolean isVisited() {
-        return Visited;
+        return !Visited;
     }
 
     public void setVisited(boolean BeenVisited) {
