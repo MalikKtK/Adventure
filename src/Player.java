@@ -7,7 +7,12 @@ public class Player {
     private Room currentRoom;
     final String cantGo = "You can't go that direction.";
     final String reachLocation = "You reach ";
-    private final ArrayList<Item> inventory = new ArrayList<>();
+    private final ArrayList<Item> inventory;
+
+
+    public Player() {
+        inventory = new ArrayList<>();
+    }
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -120,6 +125,7 @@ public class Player {
             System.out.println(cantGo);
         }
     }
+
     public void listItems(Room currentRoom) {
         System.out.println("\nThere is also a number of items around you:");
         System.out.println("\n" + currentRoom.getItems());
@@ -128,8 +134,9 @@ public class Player {
     public ArrayList<Item> getInventory() {
         return inventory;
     }
+
     public void takeItem(Item item) {
-        getCurrentRoom().removeItem(item);
+        currentRoom.removeItem(item);
         inventory.add(item);
     }
 

@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-
 public class Adventure {
+    String item;
 
     private boolean isRunning = true;
     private final Map map = new Map();
     private final UserInterface ui = new UserInterface();
     private final Player player = new Player();
-    private final ArrayList<Item> items = new ArrayList<>();
-
 
     public void run() {
         map.createRooms();
@@ -34,9 +31,9 @@ public class Adventure {
 
             case "west", "w", "go west", "go w" -> player.goWest();
 
-            case "t", "take" -> takeItem(player, String.valueOf(items));
+            case "t", "take" -> takeItem(player, item);
 
-            case "d", "drop" -> dropItem(player, String.valueOf(items));
+            case "d", "drop" -> dropItem(player, item);
 
             case "help", "h", "help me" -> ui.helpMenu();
 
@@ -85,6 +82,5 @@ public class Adventure {
 
         ui.printItemNotInRoom(itemName);
     }
-
 }
 
