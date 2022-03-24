@@ -46,15 +46,9 @@ public class UserInterface {
         playerNameCapitalized = playerName.substring(0, 1).toUpperCase() + playerName.substring(1).toLowerCase();
     }
 
-    public String[] userCommand() {
+    public String userCommand() {
         String userInput = input.nextLine().toLowerCase(Locale.ROOT);
-        String[] userInputElements = userInput.split(" ", 2);
-
-        if (userInputElements.length == 1) {
-            return new String[] {userInputElements[0], null};
-        }
-
-        return userInputElements;
+        return userInput;
     }
 
     public void helpMenu() {
@@ -64,7 +58,11 @@ public class UserInterface {
                 You have some commands at your disposal.
                 Type 'Help' to get help.\s
                 Type 'Look' to get a description of the room you are currently in.\s
-                Type 'Exit' to exit the game.""");
+                Type 'Exit' to exit the game.\s
+                Type 'Take' to take an item. \s
+                Type 'Drop' to drop an item. \s
+                Type 'Inventory' to show your inventory. \s
+                """);
     }
 
     public void lookAround(Room currentRoom) {
@@ -79,25 +77,28 @@ public class UserInterface {
         if (player.getInventory().isEmpty())
             System.out.println("- Inventory is empty");
         else
-            System.out.printf("- Inventory %s\n", player.getInventory());
-    }
-    public void printItemNotSpecified() {
-        System.out.println("You need to specifiy which Item you want!");
+            System.out.printf("Inventory: %s\n", player.getInventory());
     }
 
-    public void printItemNotInRoom(String itemName) {
-        System.out.printf("Sorry but there isn´t %s in the room;(\n", itemName);
+    public void printItemErrorMessage(String itemName) {
+        System.out.println("Sorry but there isn´t an item named " + itemName + " in the room");
     }
 
-    public void printAddInventory() {
-        System.out.println("Added item to inventory");
-    }
-
-    public void printRemoveInventory() {
-        System.out.println("Removed item from inventory");
-    }
-
-
+//    public void printItemNotSpecified() {
+//        System.out.println("You need to specifiy which Item you want!");
+//    }
+//
+//    public void printItemNotInRoom(String itemName) {
+//        System.out.printf("Sorry but there isn´t %s in the room;(\n", itemName);
+//    }
+//
+//    public void printAddInventory() {
+//        System.out.println("Added item to inventory");
+//    }
+//
+//    public void printRemoveInventory() {
+//        System.out.println("Removed item from inventory");
+//    }
 
     public void exitMessage() {
         System.out.println("""

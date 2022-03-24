@@ -50,6 +50,7 @@ public class Map {
                 Everything is still burned to a crisp.""");
 
         Room room4 = new Room();
+        Item glasses = new Item("Glasses", "An old pair of reading glasses");
         room4.setName("The Eerie Lake.");
         room4.setDescription("""
                 The lake covered in a thick mist.

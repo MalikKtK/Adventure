@@ -82,6 +82,7 @@ public class Room {
     public ArrayList<Item> getItems() {
         return items;
     }
+
     public void removeItem(Item item) {
         items.remove(item);
     }

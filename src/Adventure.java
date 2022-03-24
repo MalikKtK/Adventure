@@ -1,10 +1,9 @@
 public class Adventure {
-    String item;
 
     private boolean isRunning = true;
     private final Map map = new Map();
     private final UserInterface ui = new UserInterface();
-    private final Player player = new Player();
+    private final Player player = new Player(ui); // Her giver vi vores ui objekt vi lige har lavet ovenover med til player, så han kender det.
 
     public void run() {
         map.createRooms();
@@ -14,19 +13,16 @@ public class Adventure {
         while (isRunning)
             userAction();
     }
+
     public void exit() {
         ui.exitMessage();
         isRunning = false;
     }
 
+
     public void userAction() {
-        String[] inputElements = ui.userCommand();
-        String command = inputElements[0];
-        String item = inputElements[1];
-
-
         System.out.println("\nWhat do you want to do?");
-        switch (command) {
+        switch (ui.userCommand()) {
             case "north", "n", "go north", "go n" -> player.goNorth();
 
             case "south", "s", "go south", "go s" -> player.goSouth();
@@ -35,9 +31,9 @@ public class Adventure {
 
             case "west", "w", "go west", "go w" -> player.goWest();
 
-            case "t", "take" -> player.takeItem(player, item);
+            case "t", "take", "take item" -> player.takeItem(player, player.takeItemAnswer());
 
-            case "d", "drop" -> player.dropItem(player, item);
+            case "d", "drop", "drop item" -> player.dropItem(player, player.dropItemAnswer());
 
             case "help", "h", "help me" -> ui.helpMenu();
 
@@ -45,8 +41,7 @@ public class Adventure {
 
             case "exit", "exit game", "quit", "quit game" -> exit();
 
-
-            case "i", "inventory" -> ui.printInventory(player);
+            case "i", "inventory", "show inventory" -> ui.printInventory(player);
 
             default -> ui.invalidAnswer();
         }
