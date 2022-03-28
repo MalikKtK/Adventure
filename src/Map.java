@@ -8,12 +8,17 @@ public class Map {
 
     public Room createRooms() {
         Room room1 = new Room();
+
         Item axe = new Item("Axe", "A big old lumberjack axe");
         Item pouch = new Item("Pouch", "An old small leather pouch");
         Item matches = new Item("Matches", "A box of matches");
+
+        Food apple = new Food("Apple", "A shiny red apple", 5);
+
         room1.addItem(axe);
         room1.addItem(pouch);
         room1.addItem(matches);
+        room1.addItem(apple);
 
         room1.setName("The Forest Clearing.");
         room1.setDescription("""
@@ -51,6 +56,7 @@ public class Map {
 
         Room room4 = new Room();
         Item glasses = new Item("Glasses", "An old pair of reading glasses");
+        room4.addItem(glasses);
         room4.setName("The Eerie Lake.");
         room4.setDescription("""
                 The lake covered in a thick mist.

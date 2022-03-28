@@ -43,6 +43,10 @@ public class Adventure {
 
             case "i", "inventory", "show inventory" -> ui.printInventory(player);
 
+            case "health", "show health", "status health" -> player.playerHealth();
+
+            case "eat" -> player.eat(player.eatFoodAnswer());
+
             default -> ui.invalidAnswer();
         }
     }

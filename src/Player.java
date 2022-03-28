@@ -9,6 +9,8 @@ public class Player {
     final String reachLocation = "You reach ";
     private final ArrayList<Item> inventory;
     private final UserInterface ui; // her gør vi at Player klassen kender UserInterface klasen.
+    private int health = 100;
+    private String healthDescription = "You are currently at " + health + "/100 health.";
 
     public Player(UserInterface ui) { // her giver vi ui med i constructor for Player, som vi bruger inde i Adventure klassen, når vi laver player.
         inventory = new ArrayList<>();
@@ -132,7 +134,6 @@ public class Player {
     public void takeItem(Player player, String itemName) {
         Room currentRoom = player.getCurrentRoom();
         if (itemName == null) {
-            System.out.println("Sorry but there isn´t an item named " + itemName + " in the room");
             ui.printItemErrorMessage(itemName);
             return;
         }
@@ -144,8 +145,6 @@ public class Player {
                 return;
             }
         }
-
-        System.out.println("Sorry but there isn´t an item named " + itemName + " in the room");
         ui.printItemErrorMessage(itemName);
     }
 
@@ -182,11 +181,39 @@ public class Player {
     }
 
     public String dropItemAnswer() {
-        System.out.println(getInventory());
         System.out.println("What item would you like to drop from your inventory?");
+        System.out.println(getInventory());
         String playerAnswer = input.nextLine().toLowerCase(Locale.ROOT);
         return playerAnswer;
     }
+
+    public void playerHealth() {
+        System.out.println(healthDescription);
+    }
+
+    public void eat(String foodName) {
+        for (int i = 0; i < getInventory().size(); i++) {
+            Item tempItem = inventory.get(i);
+            if (tempItem.getName().equalsIgnoreCase(foodName)) {
+                if (inventory.get(i) instanceof Food) {
+                    health += ((Food) tempItem).getHealthPoints();
+                    //TODO add metode der tjekker 100/100
+                    System.out.println("You have eaten " + tempItem.getName());
+                    inventory.remove(i);
+                } else
+                    System.out.println("Uhm... " + tempItem.getName() + " isn't food.");
+            } else if((!(inventory.get(i) instanceof Food)))
+                System.out.println("You dont have anything called " + foodName + " in your inventory.");
+        }
+    }
+
+    public String eatFoodAnswer() {
+        System.out.println("What food would you like to eat?");
+        String playerAnswer = input.nextLine().toLowerCase(Locale.ROOT);
+        return playerAnswer;
+    }
+
+//        public void addHealthPoints() {
+//
+//            }
 }
-
-
