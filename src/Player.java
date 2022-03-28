@@ -202,7 +202,7 @@ public class Player {
                     inventory.remove(i);
                 } else
                     System.out.println("Uhm... " + tempItem.getName() + " isn't food.");
-            } else if((!(inventory.get(i) instanceof Food)))
+            }  if ((!(tempItem instanceof Food))) // TODO hvis vi har flere items i inventory og spiser apple printer er output forkert
                 System.out.println("You dont have anything called " + foodName + " in your inventory.");
         }
     }
