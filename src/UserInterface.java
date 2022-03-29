@@ -36,7 +36,7 @@ public class UserInterface {
                 \nNow lets play... ADVENTURE GAME""");
         System.out.println("\nYou wake up in " + currentRoom.getName());
         System.out.println("\n" + currentRoom.getDescription());
-        System.out.println("\nThere is also a number of items around you:");
+        System.out.println("\nThere is also items around you:");
         System.out.println("\n" + currentRoom.getItems());
 
     }
@@ -67,6 +67,8 @@ public class UserInterface {
 
     public void lookAround(Room currentRoom) {
         System.out.println(currentRoom.getDescription());
+        System.out.println("\nThere are also items around you:");
+        System.out.println(currentRoom.getItems());
     }
 
     public void invalidAnswer() {
@@ -83,22 +85,6 @@ public class UserInterface {
     public void printItemErrorMessage(String itemName) {
         System.out.println("Sorry but there isn´t an item named " + itemName + " in the room");
     }
-
-//    public void printItemNotSpecified() {
-//        System.out.println("You need to specifiy which Item you want!");
-//    }
-//
-//    public void printItemNotInRoom(String itemName) {
-//        System.out.printf("Sorry but there isn´t %s in the room;(\n", itemName);
-//    }
-//
-//    public void printAddInventory() {
-//        System.out.println("Added item to inventory");
-//    }
-//
-//    public void printRemoveInventory() {
-//        System.out.println("Removed item from inventory");
-//    }
 
     public void exitMessage() {
         System.out.println("""
