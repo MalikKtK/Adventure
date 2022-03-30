@@ -62,6 +62,10 @@ public class UserInterface {
                 Type 'Take' to take an item. \s
                 Type 'Drop' to drop an item. \s
                 Type 'Inventory' to show your inventory. \s
+                Type 'Health' to show your current health. \s
+                Type 'Eat' to eat a food item from your inventory. \s
+                Type 'Equip' to equip a weapon from your inventory. \s
+                Type 'Attack' to attack with your weapon. \s
                 """);
     }
 
