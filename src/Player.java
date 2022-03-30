@@ -192,15 +192,13 @@ public class Player {
     }
 
     public void eat(String foodName) {
-        // if (!(inventory.contains(foodName))) {
-        //  System.out.println("You dont have anything called " + foodName + " in your inventory.");
         // TODO hvis vi har flere items i inventory og spiser apple printer er output forkert
 
         for (int i = 0; i < getInventory().size(); i++) {
             Item tempItem = inventory.get(i);
             if (tempItem.getName().equalsIgnoreCase(foodName)) {
                 if (inventory.get(i) instanceof Food) {
-                    health = (health + ((Food) tempItem).getHealthPoints()); // TODO virker ikke;
+                    health = (health + ((Food) tempItem).getHealthPoints());
                     System.out.println("You are currently at " + health + "/100 health.");
                     //TODO add metode der tjekker 100/100
                     System.out.println("You have eaten " + tempItem.getName());
@@ -212,22 +210,6 @@ public class Player {
         }
     }
 
-  /*
-   for (int i = 0; i < inventory.size(); i++) {
-      Item tempItem = inventory.get(i);
-      if (tempItem.getName().equals(foodName)) {
-        if (!(inventory.get(i) instanceof Food)) {
-          System.out.println("Uhm... " + tempItem.getName() + " isn't food.");
-        }
-        if (inventory.get(i) instanceof Food) {
-          System.out.println("You have eaten " + tempItem.getName());
-          health = (health + ((Food) tempItem).getHealthPoints());
-          inventory.remove(i);
-        }
-      }
-    }
-  }
-   */
 
     public String eatFoodAnswer() {
         System.out.println("What food would you like to eat?");
@@ -250,14 +232,6 @@ public class Player {
                     System.out.println("That's not a weapon!");
                 } else
                     System.out.println("You dont have anything like that in your inventory");
-
-                //Hvis man skriver equip efterfuldt af noget man ikke har i inventory,
-                // melder programmet blot at man ikke har sådan et våben –
-                // men hvis man har en ting med det navn, som blot ikke er et våben,
-                // skal programmet melde at det ikke er et våben – så kun hvis man har tingen,
-                // og tingen er et våben, kan det rent faktisk equippes.
-                // Man kan altså ikke equippe noget der ligger i rummet!
-
             }
         }
     }
@@ -290,7 +264,6 @@ public class Player {
         String playerUnequipAnswer = input.nextLine().toLowerCase(Locale.ROOT);
         return playerUnequipAnswer;
     }
-
 
     public void attack() {
         if (weaponEquipped == true) {
