@@ -51,7 +51,7 @@ public class Adventure {
 
             case "unequip" -> player.unequipWeapon(player.unequipWeaponAnswer());
 
-            case "attack" -> player.attack();
+            //case "attack" -> player.attack();
 
             default -> ui.invalidAnswer();
         }

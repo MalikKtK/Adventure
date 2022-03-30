@@ -243,21 +243,24 @@ public class Player {
     }
 
     public void unequipWeapon(String weapon) {
-        Item tempItem = null;
         for (int i = 0; i < getInventory().size(); i++) {
-            if (inventory.get(i) instanceof Weapon) {
-                tempItem = inventory.get(i);
-                if (tempItem.getName().equalsIgnoreCase(weapon)) {
-                    if (equippedWeapon != null) {
-                        System.out.println("You dont have a weapon equipped");
+                Item tempItem = inventory.get(i);
+                if (!(tempItem.getName().equalsIgnoreCase(weapon))) {
+                    //if (equippedWeapon == null) {
+                      //  System.out.println("You dont have a weapon equipped");
 
-                    } else if (inventory.get(i) instanceof Weapon) {
+                    if (inventory.get(i) instanceof Weapon && equippedWeapon.getName() == weapon) {
                         System.out.println("You have unequipped " + tempItem.getName());
-                    } else if (!(inventory.get(i) instanceof Weapon)) {
-                        System.out.println("That's not a weapon!");
+                        equippedWeapon = null;
+                    } else if (inventory.get(i) instanceof Weapon && equippedWeapon.getName() != weapon) {
+                        System.out.println("You dont have that weapon equipped");
+                    } else if (equippedWeapon == null) {
+                        System.out.println("You dont have a weapon equipped");
+                    } else if (!(inventory.get(i) instanceof Weapon && equippedWeapon.getName() == weapon)){
+                        System.out.println("That's not a weapon and its not equipped");
                     } else
-                        System.out.println("You dont have anything like that in your inventory");
-                }
+                        System.out.println("ERROR try again");
+
             }
         }
     }
@@ -267,7 +270,7 @@ public class Player {
         String playerUnequipAnswer = input.nextLine().toLowerCase(Locale.ROOT);
         return playerUnequipAnswer;
     }
-
+    /*
     public void attack() {
         if (weaponEquipped == true) {
             if(
@@ -275,7 +278,7 @@ public class Player {
         } else
             System.out.println("You dont have a weapon equipped");
     }
-    /*
+
     public String attackAnswer() {
       System.out.println("Which weapon would you like to attack with?");
       String playerAttackAnswer = input.nextLine().toLowerCase(Locale.ROOT);
