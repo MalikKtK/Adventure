@@ -10,7 +10,7 @@ public class Player {
     private final ArrayList<Item> inventory;
     private final UserInterface ui; // her gør vi at Player klassen kender UserInterface klasen.
     private int health = 100;
-    private boolean weaponEquipped = false;
+    private Weapon equippedWeapon;
 
     public Player(UserInterface ui) { // her giver vi ui med i constructor for Player, som vi bruger inde i Adventure klassen, når vi laver player.
         inventory = new ArrayList<>();
@@ -222,12 +222,12 @@ public class Player {
         for (int i = 0; i < getInventory().size(); i++) {
             Item tempItem = inventory.get(i);
             if (tempItem.getName().equalsIgnoreCase(weapon)) {
-                if (weaponEquipped == true) {
+                if (equippedWeapon != null) {
                     System.out.println("You already have a weapon equipped");
                     System.out.println("Unequip your current weapon first");
                 } else if (inventory.get(i) instanceof Weapon) {
+                    equippedWeapon = ((Weapon)tempItem);
                     System.out.println("You have equipped " + tempItem.getName());
-                    weaponEquipped = true;
                 } else if (!(inventory.get(i) instanceof Weapon)) {
                     System.out.println("That's not a weapon!");
                 } else
@@ -243,18 +243,21 @@ public class Player {
     }
 
     public void unequipWeapon(String weapon) {
+        Item tempItem = null;
         for (int i = 0; i < getInventory().size(); i++) {
-            Item tempItem = inventory.get(i);
-            if (tempItem.getName().equalsIgnoreCase(weapon)) {
-                if (weaponEquipped == false) {
-                    System.out.println("You dont have a weapon equipped");
-                } else if (inventory.get(i) instanceof Weapon) {
-                    System.out.println("You have unequipped " + tempItem.getName());
-                    weaponEquipped = false;
-                } else if (!(inventory.get(i) instanceof Weapon)) {
-                    System.out.println("That's not a weapon!");
-                } else
-                    System.out.println("You dont have anything like that in your inventory");
+            if (inventory.get(i) instanceof Weapon) {
+                tempItem = inventory.get(i);
+                if (tempItem.getName().equalsIgnoreCase(weapon)) {
+                    if (equippedWeapon != null) {
+                        System.out.println("You dont have a weapon equipped");
+
+                    } else if (inventory.get(i) instanceof Weapon) {
+                        System.out.println("You have unequipped " + tempItem.getName());
+                    } else if (!(inventory.get(i) instanceof Weapon)) {
+                        System.out.println("That's not a weapon!");
+                    } else
+                        System.out.println("You dont have anything like that in your inventory");
+                }
             }
         }
     }
@@ -267,6 +270,7 @@ public class Player {
 
     public void attack() {
         if (weaponEquipped == true) {
+            if(
             System.out.println("You have attacked the air!");
         } else
             System.out.println("You dont have a weapon equipped");

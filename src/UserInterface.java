@@ -65,6 +65,7 @@ public class UserInterface {
                 Type 'Health' to show your current health. \s
                 Type 'Eat' to eat a food item from your inventory. \s
                 Type 'Equip' to equip a weapon from your inventory. \s
+                Type 'Unequip' to unequip your weapon. \s
                 Type 'Attack' to attack with your weapon. \s
                 """);
     }

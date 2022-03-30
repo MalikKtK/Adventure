@@ -8,4 +8,8 @@ public class RangedWeapon extends Weapon {
       this.ammunition = ammunition;
 
   }
+
+  public int getAmmunition() {
+    return ammunition;
+  }
 }
