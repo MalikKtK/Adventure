@@ -270,13 +270,12 @@ public class Player {
         String playerUnequipAnswer = input.nextLine().toLowerCase(Locale.ROOT);
         return playerUnequipAnswer;
     }
-    /*
+
     public void attack() {
-        if (weaponEquipped == true) {
-            if(
-            System.out.println("You have attacked the air!");
+        if (equippedWeapon == null) {
+            System.out.println("You need to equip first");
         } else
-            System.out.println("You dont have a weapon equipped");
+            System.out.println("You attacked the air!");
     }
 
     public String attackAnswer() {
@@ -284,5 +283,5 @@ public class Player {
       String playerAttackAnswer = input.nextLine().toLowerCase(Locale.ROOT);
       return playerAttackAnswer;
     }
-     */
+
 }

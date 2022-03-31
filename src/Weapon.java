@@ -8,15 +8,17 @@ public class Weapon extends Item {
 
     this.damage = damage;
   }
-/*
+
   public int remainingUses(Weapon weapon) {
     return ((RangedWeapon) weapon).getAmmunition();
   }
 
-  public void canUse(){
+  public void canUse(Weapon weapon){
     if (remainingUses(weapon) > 0)
       canUse = true;
   }
 
- */
+
+
+
 }
