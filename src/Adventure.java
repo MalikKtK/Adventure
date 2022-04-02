@@ -49,7 +49,7 @@ public class Adventure {
 
             case "equip" -> player.equipWeapon(player.equipWeaponAnswer());
 
-            case "attack" -> player.attack();
+            case "attack" -> player.attack(player.target());
 
             default -> ui.invalidAnswer();
         }

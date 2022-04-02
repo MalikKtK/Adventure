@@ -251,19 +251,24 @@ public class Player {
     return playerEquipAnswer;
   }
 
-  public void attack() {
-    if(equippedWeapon == null) {
-        System.out.println("You have no weapon equipped!");
-      }
-      else if (equippedWeapon instanceof RangedWeapon) {
-        if (!equippedWeapon.canUse()) {
-          System.out.println("You dont have any ammunition left!");
-        } else
-          System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
-      }
-      else if(equippedWeapon instanceof MeleeWeapon) {
+  public void attack(String target) {
+    if (equippedWeapon == null) {
+      System.out.println("You have no weapon equipped!");
+    } else if (equippedWeapon instanceof RangedWeapon) {
+      if (!equippedWeapon.canUse()) {
+        System.out.println("You dont have any ammunition left!");
+      } else
         System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
-      }
+    } else if (equippedWeapon instanceof MeleeWeapon) {
+      System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
     }
   }
 
+
+
+  public String target() {
+    System.out.println("What would you like to attack?");
+    String playerTargetAnswer = input.nextLine().toLowerCase(Locale.ROOT);
+    return playerTargetAnswer;
+  }
+}
