@@ -17,10 +17,13 @@ public class Map {
         //WEAPONS
         MeleeWeapon axe = new MeleeWeapon("Axe", "A big old lumberjack axe", 10);
 
+        Enemy orc1 = new Orc("Orc", "Filthy stinky orc", 30);
+
         room1.addItem(pouch);
         room1.addItem(matches);
         room1.addItem(apple);
         room1.addItem(axe);
+        room1.addEnemy(orc1);
 
         room1.setName("The Forest Clearing.");
         room1.setDescription("""

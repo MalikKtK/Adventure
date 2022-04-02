@@ -38,12 +38,16 @@ public class UserInterface {
         System.out.println("\n" + currentRoom.getDescription());
         System.out.println("\nThere is also items around you:");
         System.out.println("\n" + currentRoom.getItems());
+        if(!currentRoom.getEnemies().isEmpty())
+            System.out.println("\nThere is also enemies around you!");
+            System.out.println(currentRoom.getEnemies());
 
     }
 
-    public void playerName() {
+    public String playerName() {
         playerName = input.nextLine();
         playerNameCapitalized = playerName.substring(0, 1).toUpperCase() + playerName.substring(1).toLowerCase();
+        return playerNameCapitalized;
     }
 
     public String userCommand() {
@@ -65,7 +69,6 @@ public class UserInterface {
                 Type 'Health' to show your current health. \s
                 Type 'Eat' to eat a food item from your inventory. \s
                 Type 'Equip' to equip a weapon from your inventory. \s
-                Type 'Unequip' to unequip your weapon. \s
                 Type 'Attack' to attack with your weapon. \s
                 """);
     }
@@ -74,6 +77,10 @@ public class UserInterface {
         System.out.println(currentRoom.getDescription());
         System.out.println("\nThere are also items around you:");
         System.out.println(currentRoom.getItems());
+        if(!currentRoom.getEnemies().isEmpty())
+        System.out.println("There is also enemies in the room");
+        System.out.println(currentRoom.getEnemies());
+        //TODO add room enemy
     }
 
     public void invalidAnswer() {

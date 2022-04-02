@@ -3,12 +3,13 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Player {
+
   Scanner input = new Scanner(System.in);
   private Room currentRoom;
   final String cantGo = "You can't go that direction.";
   final String reachLocation = "You reach ";
   private final ArrayList<Item> inventory;
-  private final UserInterface ui; // her gør vi at Player klassen kender UserInterface klasen.
+  private UserInterface ui; // her gør vi at Player klassen kender UserInterface klasen.
   private int health = 100;
   private Weapon equippedWeapon;
 
@@ -48,6 +49,7 @@ public class Player {
         System.out.println(reachLocation + currentRoom.getName() + "\n");
         System.out.println(currentRoom.getDescription());
         listItems(currentRoom);
+        listEnemies(currentRoom);
         currentRoom.setVisited(true);
       }
     } else if (currentRoom.getNorth() != null) {
@@ -56,6 +58,7 @@ public class Player {
       System.out.println(reachLocation + currentRoom.getName() + "\n");
       System.out.println(currentRoom.getShortDescription());
       listItems(currentRoom);
+      listEnemies(currentRoom);
     } else {
       System.out.println(cantGo);
     }
@@ -71,6 +74,7 @@ public class Player {
         System.out.println(reachLocation + currentRoom.getName() + "\n");
         System.out.println(currentRoom.getDescription());
         listItems(currentRoom);
+        listEnemies(currentRoom);
         currentRoom.setVisited(true);
       }
     } else if (currentRoom.getSouth() != null) {
@@ -79,6 +83,7 @@ public class Player {
       System.out.println(reachLocation + currentRoom.getName() + "\n");
       System.out.println(currentRoom.getShortDescription());
       listItems(currentRoom);
+      listEnemies(currentRoom);
     } else {
       System.out.println(cantGo);
     }
@@ -94,6 +99,7 @@ public class Player {
         System.out.println(reachLocation + currentRoom.getName() + "\n");
         System.out.println(currentRoom.getDescription());
         listItems(currentRoom);
+        listEnemies(currentRoom);
         currentRoom.setVisited(true);
       }
     } else if (currentRoom.getEast() != null) {
@@ -102,6 +108,7 @@ public class Player {
       System.out.println(reachLocation + currentRoom.getName() + "\n");
       System.out.println(currentRoom.getShortDescription());
       listItems(currentRoom);
+      listEnemies(currentRoom);
     } else {
       System.out.println(cantGo);
     }
@@ -117,6 +124,7 @@ public class Player {
         System.out.println(reachLocation + currentRoom.getName() + "\n");
         System.out.println(currentRoom.getDescription());
         listItems(currentRoom);
+        listEnemies(currentRoom);
         currentRoom.setVisited(true);
       }
     } else if (currentRoom.getWest() != null) {
@@ -125,6 +133,7 @@ public class Player {
       System.out.println(reachLocation + currentRoom.getName() + "\n");
       System.out.println(currentRoom.getShortDescription());
       listItems(currentRoom);
+      listEnemies(currentRoom);
     } else {
       System.out.println(cantGo);
     }
@@ -133,6 +142,12 @@ public class Player {
   public void listItems(Room currentRoom) {
     System.out.println("\nThere is also a number of items around you:");
     System.out.println("\n" + currentRoom.getItems());
+  }
+
+  public void listEnemies(Room currentRoom) {
+    if (!currentRoom.getEnemies().isEmpty())
+      System.out.println("\nThere is also enemies around you!");
+    System.out.println(currentRoom.getEnemies());
   }
 
   public ArrayList<Item> getInventory() {
@@ -251,19 +266,44 @@ public class Player {
     return playerEquipAnswer;
   }
 
-  public void attack(String target) {
-    if (equippedWeapon == null) {
-      System.out.println("You have no weapon equipped!");
-    } else if (equippedWeapon instanceof RangedWeapon) {
-      if (!equippedWeapon.canUse()) {
-        System.out.println("You dont have any ammunition left!");
-      } else
-        System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
-    } else if (equippedWeapon instanceof MeleeWeapon) {
-      System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
+  public void attack(String target, Player player) {
+    for (Enemy enemy : currentRoom.getEnemies()) {
+      if (!(enemy.getName().equalsIgnoreCase(target))) {
+        System.out.println("There is no enemy with that name, try again!");
+      } else {
+        System.out.println("You attack " + enemy.getName());
+        if (equippedWeapon == null) {
+          System.out.println("You have no weapon equipped!");
+        } else if (equippedWeapon instanceof RangedWeapon) {
+          if (!equippedWeapon.canUse()) {
+            System.out.println("You dont have any ammunition left!");
+          } else
+            System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
+          enemy.setHp(enemy.getHp() - equippedWeapon.getDamage());
+          System.out.println("Enemy now has " + enemy.getHp() + " HP");
+          enemy.attack(player);
+
+        } else if (equippedWeapon instanceof MeleeWeapon)
+          System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
+        enemy.setHp(enemy.getHp() - equippedWeapon.getDamage());
+
+        // TODO tilføj at fjenden dør hvis deres HP falder under 0, og at player kan tage de items de har i deres inventory.
+           /* if(enemy.getHp() <= 0) {
+              System.out.println("The enemy has died!");
+
+                /*if(!enemy.getMonsterInventory().isEmpty()) {
+                  System.out.println("It had these items in its inventory: \n" + enemy.getMonsterInventory());
+                  System.out.print("What would you like to do with them?\n(You can use the 'take' command to take the items)");
+                  String answer = input.nextLine();
+                  for (int i = 0; i < enemy.getMonsterInventory().size(); i++) {
+                    if(answer.equalsIgnoreCase(enemy.getMonsterInventory())
+                  }
+          }*/
+        System.out.println("Enemy now has " + enemy.getHp() + " HP");
+        enemy.attack(player);
+      }
     }
   }
-
 
 
   public String target() {
