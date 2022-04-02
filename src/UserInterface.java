@@ -88,7 +88,7 @@ public class UserInterface {
     }
 
     public void printItemErrorMessage(String itemName) {
-        System.out.println("Sorry but there isn´t an item named " + itemName + " in the room");
+        System.out.println("Sorry but there is not an item named " + itemName + " in the room");
     }
 
     public void exitMessage() {
