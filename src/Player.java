@@ -200,6 +200,9 @@ public class Player {
   }
 
   public void eat(String foodName) {
+    if (inventory.isEmpty()) {
+      System.out.println("There is nothing to eat in your inventory.");
+    }
     for (int i = 0; i < getInventory().size(); i++) {
       if (inventory.get(i).getName().equalsIgnoreCase(foodName)) {
         if (!(inventory.get(i) instanceof Food)) {
@@ -226,6 +229,9 @@ public class Player {
 
 
   public void equipWeapon(String weapon) {
+    if (inventory.isEmpty()) {
+      System.out.println("There is nothing to equip in your inventory.");
+    }
     for (int i = 0; i < inventory.size(); i++) {
       if (inventory.get(i).getName().equalsIgnoreCase(weapon)) {
         if (!(inventory.get(i) instanceof Weapon)) {
@@ -246,16 +252,18 @@ public class Player {
   }
 
   public void attack() {
-    if (equippedWeapon == null) {
-      System.out.println("You need to equip first");
-    } else
-      System.out.println("You attacked the air!");
+    if(equippedWeapon == null) {
+        System.out.println("You have no weapon equipped!");
+      }
+      else if (equippedWeapon instanceof RangedWeapon) {
+        if (!equippedWeapon.canUse()) {
+          System.out.println("You dont have any ammunition left!");
+        } else
+          System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
+      }
+      else if(equippedWeapon instanceof MeleeWeapon) {
+        System.out.println("You attacked and dealt " + equippedWeapon.getDamage());
+      }
+    }
   }
 
-  public String attackAnswer() {
-    System.out.println("Which weapon would you like to attack with?");
-    String playerAttackAnswer = input.nextLine().toLowerCase(Locale.ROOT);
-    return playerAttackAnswer;
-  }
-
-}
